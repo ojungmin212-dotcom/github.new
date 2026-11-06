@@ -1,0 +1,149 @@
+# ghrank 분야 정의
+#
+# key      : 명령에서 쓰는 영문 키 (ghrank top video)
+# name     : 화면에 보이는 이름
+# topics   : GitHub 토픽. 앞 6개만 검색어로 쓴다(GitHub 검색은 AND/OR/NOT 연산자 5개까지 허용).
+#            전체 목록은 관련성 판정(저장소 토픽과 얼마나 겹치는지)에 쓴다.
+# keywords : 저장소 이름·설명에 이 단어가 있으면 관련 저장소로 본다.
+#            영문은 단어 앞부분 일치("upscal" → upscaling), 한·중·일 문자는 부분 일치.
+# aliases  : 사용자가 입력할 수 있는 별칭(한글·영문). 띄어쓰기·하이픈은 무시한다.
+#
+# 자기 분야를 추가하려면 이 파일을 복사해 고친 뒤 --categories-file 로 지정한다.
+
+[[category]]
+key = "image"
+name = "이미지 생성·편집"
+topics = ["text-to-image", "stable-diffusion", "image-generation", "diffusion-models", "image-editing", "super-resolution",
+          "image-to-image", "inpainting", "comfyui", "ai-art", "image-processing", "upscaling", "flux", "lora"]
+keywords = ["image", "diffusion", "photo", "picture", "upscal", "inpaint", "text-to-image", "img2img", "comfyui",
+            "이미지", "图像", "图片", "绘画", "画像"]
+aliases = ["이미지", "그림", "사진", "이미지생성", "그림생성", "이미지편집", "image", "images", "img", "photo",
+           "picture", "stablediffusion", "text-to-image", "comfyui"]
+
+[[category]]
+key = "video"
+name = "영상 생성·편집"
+topics = ["text-to-video", "video-generation", "video-editing", "video-editor", "image-to-video", "ai-video",
+          "video-processing", "video-synthesis", "talking-head", "lip-sync", "shorts", "ffmpeg"]
+keywords = ["video", "movie", "film", "clip", "animation", "talking", "lip-sync", "ffmpeg",
+            "영상", "동영상", "视频", "動画"]
+aliases = ["영상", "동영상", "비디오", "영상만들기", "영상편집", "영상생성", "쇼츠", "video", "videos", "movie",
+           "text-to-video", "shorts"]
+
+[[category]]
+key = "audio"
+name = "음성·오디오 (TTS·STT·음악)"
+topics = ["text-to-speech", "tts", "speech-recognition", "speech-to-text", "voice-cloning", "music-generation",
+          "asr", "speech-synthesis", "voice-conversion", "audio", "whisper", "audio-processing"]
+keywords = ["speech", "voice", "audio", "tts", "asr", "music", "sound", "whisper", "transcri",
+            "음성", "목소리", "음악", "语音", "音频", "音乐", "音声"]
+aliases = ["음성", "오디오", "소리", "목소리", "음성합성", "음성인식", "음악", "음악생성", "tts", "stt", "asr",
+           "audio", "speech", "voice", "music"]
+
+[[category]]
+key = "llm"
+name = "LLM·챗봇"
+topics = ["llm", "large-language-models", "chatbot", "chatgpt", "llm-inference", "local-llm",
+          "llama", "openai", "gpt", "ollama", "language-model", "llms", "chat"]
+keywords = ["llm", "language model", "chat", "gpt", "inference", "ollama", "llama",
+            "챗봇", "언어 모델", "大模型", "语言模型"]
+aliases = ["llm", "챗봇", "챗gpt", "언어모델", "대화형ai", "chatbot", "chatgpt", "gpt", "ollama"]
+
+[[category]]
+key = "agent"
+name = "AI 에이전트·MCP"
+topics = ["ai-agents", "agents", "autonomous-agents", "multi-agent", "agentic-ai", "mcp",
+          "ai-agent", "agent", "model-context-protocol", "mcp-server", "agent-framework", "multi-agent-systems"]
+keywords = ["agent", "autonomous", "mcp", "model context protocol", "에이전트", "智能体"]
+aliases = ["에이전트", "ai에이전트", "agent", "agents", "aiagent", "mcp"]
+
+[[category]]
+key = "rag"
+name = "RAG·검색·벡터DB"
+topics = ["rag", "retrieval-augmented-generation", "vector-database", "semantic-search", "embeddings", "knowledge-base",
+          "vector-search", "search-engine", "embedding", "graphrag", "full-text-search"]
+keywords = ["rag", "retrieval", "vector", "search", "embedding", "knowledge",
+            "검색", "벡터", "知识库", "检索"]
+aliases = ["rag", "검색증강", "벡터", "벡터db", "벡터디비", "임베딩", "지식베이스", "문서검색", "검색엔진",
+           "vectordb", "vector-database", "embedding"]
+
+[[category]]
+key = "vision"
+name = "컴퓨터 비전·OCR"
+topics = ["computer-vision", "object-detection", "image-segmentation", "ocr", "face-recognition", "pose-estimation",
+          "yolo", "image-classification", "tracking", "segmentation", "detection", "opencv"]
+keywords = ["vision", "detect", "segment", "ocr", "recogni", "yolo", "tracking", "opencv",
+            "비전", "인식", "视觉", "识别", "检测"]
+aliases = ["비전", "컴퓨터비전", "객체인식", "객체탐지", "ocr", "문자인식", "얼굴인식", "vision", "yolo", "opencv",
+           "computer-vision"]
+
+[[category]]
+key = "3d"
+name = "3D 생성·재구성"
+topics = ["3d", "3d-reconstruction", "gaussian-splatting", "nerf", "text-to-3d", "3d-generation",
+          "point-cloud", "mesh", "3d-graphics", "image-to-3d", "slam"]
+keywords = ["3d", "mesh", "nerf", "gaussian splatting", "point cloud", "reconstruct", "三维"]
+aliases = ["3d", "3d모델", "3d생성", "삼차원", "nerf", "gaussian-splatting", "3dgs"]
+
+[[category]]
+key = "frontend"
+name = "웹 프론트엔드·UI"
+topics = ["frontend", "react", "vue", "ui-components", "css-framework", "nextjs",
+          "ui", "component-library", "design-system", "tailwindcss", "svelte", "javascript-framework"]
+keywords = ["ui", "frontend", "front-end", "component", "react", "vue", "svelte", "css", "design system",
+            "프론트엔드", "前端"]
+aliases = ["프론트엔드", "프론트", "웹ui", "ui", "frontend", "react", "vue", "nextjs", "css"]
+
+[[category]]
+key = "backend"
+name = "백엔드·API 서버"
+topics = ["backend", "web-framework", "rest-api", "api-server", "microservices", "graphql",
+          "http-server", "framework", "api", "server", "orm", "baas"]
+keywords = ["backend", "back-end", "server", "api", "framework", "http", "microservice", "orm",
+            "백엔드", "서버", "后端"]
+aliases = ["백엔드", "서버", "웹서버", "api서버", "backend", "server", "restapi", "graphql"]
+
+[[category]]
+key = "data"
+name = "데이터 분석·시각화"
+topics = ["data-visualization", "data-analysis", "dashboard", "business-intelligence", "charts", "data-science",
+          "visualization", "analytics", "pandas", "jupyter", "bi", "chart"]
+keywords = ["data", "chart", "visuali", "dashboard", "analytic", "plot", "notebook",
+            "데이터", "시각화", "数据", "可视化"]
+aliases = ["데이터", "시각화", "차트", "대시보드", "데이터분석", "데이터시각화", "data", "dataviz", "chart",
+           "dashboard", "analytics"]
+
+[[category]]
+key = "automation"
+name = "웹 크롤링·업무 자동화"
+topics = ["web-scraping", "crawler", "scraper", "browser-automation", "workflow-automation", "rpa",
+          "scraping", "spider", "automation", "playwright", "selenium", "puppeteer"]
+keywords = ["scrap", "crawl", "automat", "browser", "workflow", "spider", "playwright", "selenium",
+            "크롤링", "자동화", "爬虫", "自动化"]
+aliases = ["크롤링", "크롤러", "스크래핑", "자동화", "업무자동화", "rpa", "crawler", "crawling", "scraping",
+           "scraper", "automation", "workflow"]
+
+[[category]]
+key = "devtools"
+name = "개발 도구·CLI"
+topics = ["developer-tools", "cli", "terminal", "command-line", "devtools", "productivity",
+          "shell", "command-line-tool", "terminal-app", "tui", "developer-productivity"]
+keywords = ["cli", "terminal", "command", "developer", "devtool", "shell", "tui",
+            "개발 도구", "터미널", "命令行", "开发者"]
+aliases = ["개발도구", "개발자도구", "cli", "터미널", "커맨드라인", "명령줄", "devtools", "terminal", "shell"]
+
+[[category]]
+key = "game"
+name = "게임 개발"
+topics = ["game-engine", "game-development", "gamedev", "game-framework", "games", "game",
+          "godot", "unity", "2d-game", "3d-engine"]
+keywords = ["game", "engine", "gamedev", "게임", "游戏", "ゲーム"]
+aliases = ["게임", "게임개발", "게임엔진", "game", "games", "gamedev", "gameengine"]
+
+[[category]]
+key = "mobile"
+name = "모바일 앱"
+topics = ["android", "ios", "flutter", "react-native", "mobile", "swiftui",
+          "kotlin", "android-app", "ios-app", "mobile-app", "cross-platform"]
+keywords = ["android", "ios", "mobile", "flutter", "react native", "swiftui", "모바일", "移动"]
+aliases = ["모바일", "모바일앱", "앱개발", "안드로이드", "아이폰", "android", "ios", "mobile", "flutter", "reactnative"]

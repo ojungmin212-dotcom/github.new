@@ -1,0 +1,44 @@
+# push·PR 마다 린트·타입 검사·테스트. Windows 는 cp949 출력으로도 검사한다.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.11", "3.13"]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: 설치
+        run: pip install -e ".[dev]"
+      - name: 린트 (ruff)
+        run: ruff check src tests
+      - name: 타입 검사 (pyright)
+        run: pyright
+      - name: 테스트
+        env:
+          PYTHONIOENCODING: ${{ matrix.os == 'windows-latest' && 'cp949' || 'utf-8' }}
+        run: python -m pytest -q
+      - name: 실행 확인 (네트워크 없음)
+        run: |
+          ghrank --version
+          ghrank categories > categories.txt
+          ghrank categories --format md -o categories.md
