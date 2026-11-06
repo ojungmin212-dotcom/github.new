@@ -162,10 +162,11 @@ class GitHubClient:
             return 60.0
         return None
 
-    def get(self, url: str, accept: str = "application/vnd.github+json", api: bool = True) -> bytes:
+    def get(self, url: str, accept: str = "application/vnd.github+json", api: bool = True, use_cache: bool = True) -> bytes:
         cache_key = f"{accept} {url}"
-        if self.cache is not None:
-            hit = self.cache.get(cache_key)
+        cache = self.cache if use_cache else None
+        if cache is not None:
+            hit = cache.get(cache_key)
             if hit is not None:
                 return hit
         for attempt in range(3):
@@ -175,8 +176,8 @@ class GitHubClient:
             except (urllib.error.URLError, TimeoutError, OSError) as exc:
                 raise GitHubError(f"네트워크 오류: {exc} - 인터넷·프록시 설정을 확인하세요") from exc
             if resp.status == 200:
-                if self.cache is not None:
-                    self.cache.set(cache_key, resp.body)
+                if cache is not None:
+                    cache.set(cache_key, resp.body)
                 return resp.body
             if resp.status == 404:
                 raise NotFoundError(f"찾을 수 없음: {url}")
@@ -197,13 +198,18 @@ class GitHubClient:
             raise GitHubError(f"GitHub 응답 오류({resp.status}): {_api_message(resp.body)}")
         raise GitHubError("재시도 횟수를 넘었습니다")  # pragma: no cover - 루프 안에서 항상 반환/예외
 
-    def get_json(self, url: str) -> dict:
-        data = json.loads(self.get(url).decode("utf-8"))
+    def get_json(self, url: str, use_cache: bool = True) -> dict:
+        data = json.loads(self.get(url, use_cache=use_cache).decode("utf-8"))
         if not isinstance(data, dict):
             raise GitHubError("예상하지 못한 응답 형식")
         return data
 
     # ---- 고수준 ---------------------------------------------------------------
+    def rate_limit(self) -> dict[str, int]:
+        """현재 호출 한도(캐시 안 함, 이 호출 자체는 한도를 쓰지 않음). {'search': 30, 'core': 5000} 형태."""
+        res = self.get_json(f"{API}/rate_limit", use_cache=False).get("resources") or {}
+        return {k: int((res.get(k) or {}).get("limit") or 0) for k in ("search", "core")}
+
     def search_repositories(self, query: str, sort: str = "stars", per_page: int = 100, page: int = 1) -> dict:
         params = {"q": query, "sort": sort, "order": "desc", "per_page": str(per_page), "page": str(page)}
         return self.get_json(f"{API}/search/repositories?{urllib.parse.urlencode(params)}")

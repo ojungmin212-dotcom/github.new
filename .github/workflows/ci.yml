@@ -3,7 +3,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: ["**"]   # 모든 브랜치 push 에서 검사(main 합치기 전에 확인)
   pull_request:
 
 permissions:
@@ -42,3 +42,14 @@ jobs:
           ghrank --version
           ghrank categories > categories.txt
           ghrank categories --format md -o categories.md
+      - name: 바탕화면 아이콘 만들기 확인 (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          ghrank web --shortcut
+          $p = Join-Path ([Environment]::GetFolderPath('Desktop')) 'ghrank.lnk'
+          if (-not (Test-Path $p)) { throw "아이콘이 없습니다: $p" }
+          $l = (New-Object -ComObject WScript.Shell).CreateShortcut($p)
+          "대상: $($l.TargetPath) / 인자: $($l.Arguments)"
+          if ($l.TargetPath -notlike '*pythonw.exe') { throw "pythonw.exe 가 아닙니다: $($l.TargetPath)" }
+          if ($l.Arguments -ne '-m ghrank web --idle-minutes 30') { throw "인자가 다릅니다: $($l.Arguments)" }

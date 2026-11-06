@@ -1,4 +1,4 @@
-"""명령줄 진입점: ghrank categories | top | find | guide"""
+"""명령줄 진입점: ghrank categories | top | find | guide | web"""
 
 from __future__ import annotations
 
@@ -45,15 +45,21 @@ def _top(value: str) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    common = argparse.ArgumentParser(add_help=False)
-    g = common.add_argument_group("공통 옵션")
-    g.add_argument("--format", choices=("text", "md", "json"), default="text", help="출력 형식 (기본 text)")
-    g.add_argument("-o", "--output", type=Path, help="결과를 파일로 저장(UTF-8)")
-    g.add_argument("--no-cache", action="store_true", help="디스크 캐시를 쓰지 않음")
-    g.add_argument("--cache-hours", type=float, default=DEFAULT_CACHE_HOURS, help="캐시 유효 시간(기본 6시간)")
-    g.add_argument("--categories-file", type=Path, help="분야 정의 TOML 파일(기본: 내장 categories.toml)")
-    g.add_argument("--max-wait", type=float, default=90.0, help="호출 한도에 걸렸을 때 최대 대기 초(기본 90)")
-    g.add_argument("-q", "--quiet", action="store_true", help="진행 메시지를 숨김")
+    base = argparse.ArgumentParser(add_help=False)
+    b = base.add_argument_group("공통 옵션")
+    b.add_argument("--categories-file", type=Path, help="분야 정의 TOML 파일(기본: 내장 categories.toml)")
+    b.add_argument("-q", "--quiet", action="store_true", help="진행 메시지를 숨김")
+
+    net = argparse.ArgumentParser(add_help=False)
+    n = net.add_argument_group("조회 옵션")
+    n.add_argument("--no-cache", action="store_true", help="디스크 캐시를 쓰지 않음")
+    n.add_argument("--cache-hours", type=float, default=DEFAULT_CACHE_HOURS, help="캐시 유효 시간(기본 6시간)")
+    n.add_argument("--max-wait", type=float, default=90.0, help="호출 한도에 걸렸을 때 최대 대기 초(기본 90)")
+
+    out = argparse.ArgumentParser(add_help=False)
+    o = out.add_argument_group("출력 옵션")
+    o.add_argument("--format", choices=("text", "md", "json"), default="text", help="출력 형식 (기본 text)")
+    o.add_argument("-o", "--output", type=Path, help="결과를 파일로 저장(UTF-8)")
 
     ranking = argparse.ArgumentParser(add_help=False)
     r = ranking.add_argument_group("순위 옵션")
@@ -70,22 +76,28 @@ def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="ghrank",
         description="GitHub 스타 순위 기반 분야별 저장소 추천 · 검색 · 설치/사용/주의점 요약",
-        epilog="예) ghrank top 이미지 영상   |   ghrank find \"pdf ocr\" --guide   |   ghrank guide comfy-org/ComfyUI",
+        epilog="예) ghrank web   |   ghrank top 이미지 영상   |   ghrank find \"pdf ocr\" --guide   |   ghrank guide comfy-org/ComfyUI",
     )
     p.add_argument("--version", action="version", version=f"ghrank {__version__}")
     sub = p.add_subparsers(dest="command", required=True, metavar="명령")
 
-    sub.add_parser("categories", parents=[common], help="분야 목록과 별칭 보기")
+    sub.add_parser("categories", parents=[base, out], help="분야 목록과 별칭 보기")
 
-    t = sub.add_parser("top", parents=[common, ranking], help="분야별 상위 저장소 (분야 생략 시 전체 분야)")
+    t = sub.add_parser("top", parents=[base, net, out, ranking], help="분야별 상위 저장소 (분야 생략 시 전체 분야)")
     t.add_argument("categories", nargs="*", metavar="분야", help="분야 key 또는 별칭 (예: image, 이미지, 영상)")
 
-    f = sub.add_parser("find", parents=[common, ranking], help="찾고 싶은 분야·키워드로 저장소 찾기")
+    f = sub.add_parser("find", parents=[base, net, out, ranking], help="찾고 싶은 분야·키워드로 저장소 찾기")
     f.add_argument("query", nargs="+", metavar="검색어")
     f.add_argument("--raw", action="store_true", help="분야로 해석하지 않고 검색어 그대로 GitHub 검색")
 
-    gd = sub.add_parser("guide", parents=[common], help="특정 저장소의 설치·사용법·주의점")
+    gd = sub.add_parser("guide", parents=[base, net, out], help="특정 저장소의 설치·사용법·주의점")
     gd.add_argument("repos", nargs="+", metavar="owner/repo")
+
+    w = sub.add_parser("web", parents=[base, net], help="브라우저 화면으로 쓰기 (내 PC 에서만 접속)")
+    w.add_argument("--port", type=int, default=8765, help="사용할 포트(기본 8765, 사용 중이면 다음 번호)")
+    w.add_argument("--no-browser", action="store_true", help="브라우저를 자동으로 열지 않음")
+    w.add_argument("--idle-minutes", type=float, default=0, help="화면을 N분 동안 안 쓰면 자동 종료(기본 0 = 끄지 않음)")
+    w.add_argument("--shortcut", action="store_true", help="(Windows) 바탕화면에 실행 아이콘을 만들고 끝냄")
     return p
 
 
@@ -198,7 +210,7 @@ def cmd_guide(args: argparse.Namespace, client: GitHubClient, now: datetime, log
     return out
 
 
-def _render_report(report: Report, fmt: str, now: datetime) -> str:
+def render_report(report: Report, fmt: str, now: datetime) -> str:
     if fmt == "json":
         return render.to_json({
             "generated_at": now.isoformat(),
@@ -293,11 +305,21 @@ def main(argv: Sequence[str] | None = None, client: GitHubClient | None = None, 
         _emit(_render_categories(categories, args.format), args.output)
         return 0
 
+    if args.command == "web" and args.shortcut:
+        from ghrank.web import create_shortcut
+
+        return create_shortcut(log)
+
     if client is None:
         cache = None if args.no_cache else FileCache(FileCache.default_dir(), args.cache_hours * 3600)
         client = GitHubClient.from_env(cache=cache, max_wait=args.max_wait, log=log)
         if not client.token:
             log("[안내] GITHUB_TOKEN 없이 실행 중 - 검색 분당 10회 한도라 전체 분야 조회 시 대기가 생길 수 있습니다")
+
+    if args.command == "web":
+        from ghrank.web import serve
+
+        return serve(args, categories, client, log)
 
     try:
         if args.command == "guide":
@@ -311,5 +333,5 @@ def main(argv: Sequence[str] | None = None, client: GitHubClient | None = None, 
     except (CategoryError, ValueError) as exc:
         print(f"오류: {exc}", file=sys.stderr)
         return 1
-    _emit(_render_report(report, args.format, now), args.output)
+    _emit(render_report(report, args.format, now), args.output)
     return 1 if report.errors else 0

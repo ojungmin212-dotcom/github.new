@@ -22,7 +22,7 @@ ghrank = "ghrank.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-ghrank = ["categories.toml"]
+ghrank = ["categories.toml", "web/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

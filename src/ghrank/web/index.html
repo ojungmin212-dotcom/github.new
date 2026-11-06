@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ghrank</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">gh</span>
+      <div>
+        <h1>ghrank</h1>
+        <p>GitHub 분야별 저장소 추천 · 설치법 · 주의점</p>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span id="token-status" class="badge" title="GitHub 호출 한도">상태 확인 중…</span>
+      <button id="quit" type="button" class="btn ghost small">종료</button>
+    </div>
+  </header>
+
+  <main>
+    <nav class="tabs" role="tablist" aria-label="기능">
+      <button type="button" role="tab" id="tab-top" aria-controls="panel-top" aria-selected="true">분야별 순위</button>
+      <button type="button" role="tab" id="tab-find" aria-controls="panel-find" aria-selected="false">찾기</button>
+      <button type="button" role="tab" id="tab-guide" aria-controls="panel-guide" aria-selected="false">저장소 가이드</button>
+    </nav>
+
+    <section id="panel-top" role="tabpanel" aria-labelledby="tab-top" class="panel">
+      <p class="hint">분야를 누르면 GitHub 스타 순으로 상위 저장소를 보여 줍니다.</p>
+      <div id="cats" class="chips" aria-label="분야"></div>
+    </section>
+
+    <section id="panel-find" role="tabpanel" aria-labelledby="tab-find" class="panel" hidden>
+      <form id="find-form" class="searchbar" autocomplete="off">
+        <input id="q" name="q" type="search" maxlength="200" required
+               placeholder="예: 영상 만들기 · pdf ocr · subtitle generator" aria-label="검색어">
+        <button type="submit" class="btn primary">찾기</button>
+      </form>
+      <label class="check"><input id="raw" type="checkbox"> 분야로 해석하지 않고 검색어 그대로 찾기</label>
+      <p class="hint">한글은 분야로 해석합니다. 구체적인 주제는 영어 키워드가 정확합니다(GitHub 설명은 대부분 영어).</p>
+    </section>
+
+    <section id="panel-guide" role="tabpanel" aria-labelledby="tab-guide" class="panel" hidden>
+      <form id="guide-form" class="searchbar" autocomplete="off">
+        <input id="repo" name="repo" type="text" maxlength="300" required
+               placeholder="owner/repo 또는 GitHub 주소 (예: Comfy-Org/ComfyUI)" aria-label="저장소">
+        <button type="submit" class="btn primary">보기</button>
+      </form>
+      <p class="hint">README 에서 설치·사용 명령을 뽑고 라이선스·유지보수·위험한 설치 명령 등 주의점을 정리합니다.</p>
+    </section>
+
+    <details id="options" class="options">
+      <summary>조건 <span id="options-summary" class="muted"></span></summary>
+      <div class="options-grid">
+        <label>개수
+          <select id="opt-n"><option>5</option><option selected>12</option><option>20</option><option>30</option><option>50</option></select>
+        </label>
+        <label>정렬
+          <select id="opt-sort">
+            <option value="stars" selected>스타 순</option>
+            <option value="forks">포크 순</option>
+            <option value="updated">최근 업데이트 순</option>
+          </select>
+        </label>
+        <label>최근 활동
+          <select id="opt-active">
+            <option value="" selected>전체</option>
+            <option value="30">30일 이내</option>
+            <option value="90">90일 이내</option>
+            <option value="180">180일 이내</option>
+            <option value="365">1년 이내</option>
+          </select>
+        </label>
+        <label>최소 스타
+          <input id="opt-min-stars" type="number" min="0" step="100" placeholder="제한 없음">
+        </label>
+        <label>주 언어
+          <input id="opt-lang" type="text" list="langs" maxlength="40" placeholder="전체">
+          <datalist id="langs">
+            <option value="Python"><option value="TypeScript"><option value="JavaScript"><option value="Go">
+            <option value="Rust"><option value="Java"><option value="C++"><option value="C#"><option value="Kotlin">
+            <option value="Swift"><option value="Dart">
+          </datalist>
+        </label>
+        <div class="checks">
+          <label class="check"><input id="opt-lists" type="checkbox"> awesome 같은 링크 모음 포함</label>
+          <label class="check"><input id="opt-loose" type="checkbox"> 관련성 필터 끄기</label>
+        </div>
+      </div>
+    </details>
+
+    <div id="state" class="state" role="status" aria-live="polite"></div>
+    <div id="results"></div>
+  </main>
+
+  <footer class="footer">
+    <p>순위는 GitHub 스타 수 그대로이며 품질·보안을 보장하지 않습니다. 스타는 조작될 수 있습니다.</p>
+    <p>분야 분류는 저장소가 붙인 토픽·설명에 의존하고, 설치·사용법은 README 에서 자동 추출한 것입니다. 실행 전에 원문과 대조하세요.</p>
+    <p class="muted">이 화면은 내 PC(127.0.0.1)에서만 열립니다. <span id="version"></span></p>
+  </footer>
+</body>
+</html>
