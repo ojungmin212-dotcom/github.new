@@ -237,6 +237,10 @@ def _install_section(title: str, inst: list[InstallResult]) -> list[str]:
 
 
 def main(argv: list[str] | None = None) -> int:
+    # Windows 콘솔·CI(cp1252·cp949)로 출력해도 한글 때문에 죽지 않게 UTF-8 로 쓴다
+    reconfigure = getattr(sys.stdout, "reconfigure", None)
+    if reconfigure is not None:
+        reconfigure(encoding="utf-8", errors="replace")
     p = argparse.ArgumentParser(description="ghrank 정확도 측정")
     p.add_argument("--offline", action="store_true", help="분야 분류만(네트워크 없음)")
     p.add_argument("-o", "--output", type=Path)
