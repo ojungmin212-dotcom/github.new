@@ -1,0 +1,382 @@
+{
+ "labeled_at": "2026-11-07",
+ "labeler": "claude-subagent (README text only)",
+ "items": [
+  {
+   "repo": "AUTOMATIC1111/stable-diffusion-webui",
+   "sha": "82a973c04367123ae98bd9abdf80d9eda9b910e2",
+   "kind": "commands",
+   "install_commands": [
+    "git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git",
+    "sudo apt install wget git python3 python3-venv libgl1 libglib2.0-0",
+    "wget -q https://raw.githubusercontent.com/AUTOMATIC1111/stable-diffusion-webui/master/webui.sh"
+   ],
+   "notes": "First listed path is a Windows release zip download; the Windows automatic path has an inline git clone and the Linux path has apt + wget webui.sh code blocks."
+  },
+  {
+   "repo": "Comfy-Org/ComfyUI",
+   "sha": "1332fabfcc507aa7c548cd5152071ed494c207e8",
+   "kind": "commands",
+   "install_commands": [
+    "pip install comfy-cli",
+    "comfy install",
+    "pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu130",
+    "pip install -r requirements.txt"
+   ],
+   "notes": "Desktop app download is the recommended path; comfy-cli is the first command-based path and manual pip install (NVIDIA torch + requirements) is the alternative."
+  },
+  {
+   "repo": "xinntao/Real-ESRGAN",
+   "sha": "a4abfb2979a7bbff3f69f58f58ae324608821e27",
+   "kind": "commands",
+   "install_commands": [
+    "git clone https://github.com/xinntao/Real-ESRGAN.git",
+    "pip install basicsr",
+    "pip install -r requirements.txt",
+    "python setup.py develop"
+   ],
+   "notes": "Clone-and-pip install from source; facexlib/gfpgan are optional face-enhancement deps and portable NCNN executables are also offered as downloads."
+  },
+  {
+   "repo": "invoke-ai/InvokeAI",
+   "sha": "58d090b9fe1ba4eb70de97ffda6a4c1dd04578cc",
+   "kind": "download",
+   "install_commands": [],
+   "notes": "Installation section only says to download the Launcher from GitHub releases; an external installation docs link is also present."
+  },
+  {
+   "repo": "huggingface/diffusers",
+   "sha": "f7fc4389e508cad81bec8e7354aeacf8ddbcdcc0",
+   "kind": "commands",
+   "install_commands": [
+    "pip install --upgrade diffusers[torch]",
+    "conda install -c conda-forge diffusers"
+   ],
+   "notes": "pip is the official path, conda (community-maintained) is listed second."
+  },
+  {
+   "repo": "mifi/lossless-cut",
+   "sha": "4c7ab1cb0c9acaefabb48e997bc909562dc3624d",
+   "kind": "download",
+   "install_commands": [],
+   "notes": "App stores (Mac App Store, MS Store, Snap Store) or direct release downloads; no shell commands."
+  },
+  {
+   "repo": "Wan-Video/Wan2.2",
+   "sha": "1ea34ff48f87168174e12956e200b1d908b1c5ff",
+   "kind": "commands",
+   "install_commands": [
+    "git clone https://github.com/Wan-Video/Wan2.2.git",
+    "pip install -r requirements.txt"
+   ],
+   "notes": "Model weights are downloaded in a separate 'Model Download' section (huggingface-cli/modelscope), not included here."
+  },
+  {
+   "repo": "KlingAIResearch/LivePortrait",
+   "sha": "9b294b3d0536135442ea73cb01e6cb3ca7029dd3",
+   "kind": "commands",
+   "install_commands": [
+    "git clone https://github.com/KlingTeam/LivePortrait",
+    "conda create -n LivePortrait python=3.10",
+    "conda activate LivePortrait",
+    "pip install -r requirements.txt"
+   ],
+   "notes": "Clone URL uses the KlingTeam org rather than KlingAIResearch; pretrained weights download (huggingface-cli) is a separate step 2."
+  },
+  {
+   "repo": "heygen-com/hyperframes",
+   "sha": "9ac2a2387aa1afeb7c8942dbf4e46c7fdee359d8",
+   "kind": "commands",
+   "install_commands": [
+    "claude plugin marketplace add heygen-com/hyperframes",
+    "claude plugin install hyperframes@hyperframes",
+    "npx hyperframes init my-video"
+   ],
+   "notes": "Several entry points: desktop app download links at top, Quick Start's first path is a Claude Code plugin, and the manual CLI path via npx is the alternative."
+  },
+  {
+   "repo": "RVC-Boss/GPT-SoVITS",
+   "sha": "04a44eb977586645f33594b72af13a035a2056c6",
+   "kind": "commands",
+   "install_commands": [
+    "conda create -n GPTSoVits python=3.10",
+    "conda activate GPTSoVits",
+    "pwsh -F install.ps1 --Device <CU126|CU128|CPU> --Source <HF|HF-Mirror|ModelScope> [--DownloadUVR5]",
+    "bash install.sh --device <CU126|CU128|ROCM|CPU> --source <HF|HF-Mirror|ModelScope> [--download-uvr5]"
+   ],
+   "notes": "Windows section also offers an integrated-package download; install script commands contain placeholder options and there is no git clone step."
+  },
+  {
+   "repo": "ggml-org/whisper.cpp",
+   "sha": "727d3e7666485e12450746b523bfb4e7f057cc5e",
+   "kind": "commands",
+   "install_commands": [
+    "git clone https://github.com/ggml-org/whisper.cpp.git",
+    "sh ./models/download-ggml-model.sh base.en",
+    "cmake -B build",
+    "cmake --build build -j --config Release"
+   ],
+   "notes": "Quick start is clone + model download + CMake build; Docker images and Conan are listed later as alternatives."
+  },
+  {
+   "repo": "coqui-ai/TTS",
+   "sha": "dbf1a08a0d4e47fdad6172e433eeb34bc6b13b4e",
+   "kind": "commands",
+   "install_commands": [
+    "pip install TTS",
+    "docker run --rm -it -p 5002:5002 --entrypoint /bin/bash ghcr.io/coqui-ai/tts-cpu"
+   ],
+   "notes": "pip install is the recommended end-user path; git clone + editable install is for developers, Docker image is offered as a no-install alternative."
+  },
+  {
+   "repo": "2noise/ChatTTS",
+   "sha": "77b89ee281cd479f5b1a787ada330dc975ca1f2a",
+   "kind": "commands",
+   "install_commands": [
+    "git clone https://github.com/2noise/ChatTTS",
+    "pip install --upgrade -r requirements.txt",
+    "pip install ChatTTS"
+   ],
+   "notes": "Two install paths: 'Get Started' clones the repo and installs requirements to run the WebUI, while a later 'Installation' section offers pip install ChatTTS."
+  },
+  {
+   "repo": "myshell-ai/OpenVoice",
+   "sha": "74a1d147b17a8c3092dd5430504bd83ef6c7eb23",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "No install text in README; it only points to the in-repo docs/USAGE.md for instructions (in-repo doc, not an external site)."
+  },
+  {
+   "repo": "ollama/ollama",
+   "sha": "5e983d4f800053c6f5691496b675c3212aa8099d",
+   "kind": "commands",
+   "install_commands": [
+    "curl -fsSL https://ollama.com/install.sh | sh",
+    "irm https://ollama.com/install.ps1 | iex"
+   ],
+   "notes": "macOS/Linux use the curl install script, Windows uses PowerShell; manual .dmg/.exe downloads are also linked."
+  },
+  {
+   "repo": "open-webui/open-webui",
+   "sha": "c38885a1a737da4968f157092f304f3b5481d0bf",
+   "kind": "commands",
+   "install_commands": [
+    "pip install open-webui",
+    "open-webui serve",
+    "docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main"
+   ],
+   "notes": "README has both pip and docker; pip is listed first and 'open-webui serve' is part of the install block."
+  },
+  {
+   "repo": "vllm-project/vllm",
+   "sha": "f98575ec133dce6a759d1d0f27667eb246fc3123",
+   "kind": "commands",
+   "install_commands": [
+    "uv pip install vllm",
+    "vllm download-kernels"
+   ],
+   "notes": "uv is recommended, plain pip mentioned in prose without a separate command."
+  },
+  {
+   "repo": "browser-use/browser-use",
+   "sha": "b49a68e4060acb226da8f784194fef301c53a6d7",
+   "kind": "commands",
+   "install_commands": [
+    "uv add browser-use"
+   ],
+   "notes": "Three paths: hosted cloud (link only), CLI (a prompt to paste into an agent), and Python library where 'uv add browser-use' is the only shell install command."
+  },
+  {
+   "repo": "langgenius/dify",
+   "sha": "65b4e17d6ebeff39c7e66c832649afff01666adf",
+   "kind": "commands",
+   "install_commands": [
+    "cp .env.example .env",
+    "openssl rand -hex 32",
+    "docker compose up -d"
+   ],
+   "notes": "Docker Compose commands are run inside the repo's docker/ directory ('cd docker' omitted); README has no git clone step."
+  },
+  {
+   "repo": "infiniflow/ragflow",
+   "sha": "3c6d2255af06164f0818d0959af10de0afd8b8fa",
+   "kind": "commands",
+   "install_commands": [
+    "git clone https://github.com/infiniflow/ragflow.git",
+    "git checkout v1.0.0",
+    "docker compose -f docker-compose.yml up -d"
+   ],
+   "notes": "Docker deployment is the end-user path (run from ragflow/docker); launch-from-source is for development, and the sysctl step is only needed with Elasticsearch."
+  },
+  {
+   "repo": "meilisearch/meilisearch",
+   "sha": "c18c81973ad5d3e126f4583cdd16a9ec1719aa4a",
+   "kind": "commands",
+   "install_commands": [
+    "curl -L https://install.meilisearch.com | sh",
+    "./meilisearch"
+   ],
+   "notes": "Meilisearch Cloud (no install) is recommended; for self-hosting the Docker 'docker run' command comes first but spans multiple lines, so the single-line curl binary install is recorded."
+  },
+  {
+   "repo": "ultralytics/ultralytics",
+   "sha": "3cd02542899c1bcab5690b02033bc18aa07df0d4",
+   "kind": "commands",
+   "install_commands": [
+    "pip install ultralytics"
+   ],
+   "notes": "Conda, Docker and source installs are only linked to the Quickstart docs."
+  },
+  {
+   "repo": "tesseract-ocr/tesseract",
+   "sha": "c21194d06998e244754d65329d6c9f1e14fe392e",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "Installing section links to external tessdoc pages for binary packages and compiling; only a usage synopsis is shown."
+  },
+  {
+   "repo": "ocrmypdf/OCRmyPDF",
+   "sha": "66edff7fee9470cdf50e17c5dc417581d6e86148",
+   "kind": "commands",
+   "install_commands": [
+    "apt install ocrmypdf",
+    "brew install ocrmypdf"
+   ],
+   "notes": "Install commands appear in a per-OS table (inline code) rather than a code block; Debian/Ubuntu is listed first."
+  },
+  {
+   "repo": "PaddlePaddle/PaddleOCR",
+   "sha": "dab3fe35379033fdcb2d0e9572fac0b36c9a9ebf",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "Quick Start points to the online demo and to external documentation pages for local deployment; no install commands."
+  },
+  {
+   "repo": "mrdoob/three.js",
+   "sha": "a70ee1ad92a681b7b8c42d23b6ede4febb28b25c",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "No install section; only top navigation links to Docs/Manual, a usage snippet and a 'Cloning this repository' git clone that is about repo download size rather than installation."
+  },
+  {
+   "repo": "NVlabs/instant-ngp",
+   "sha": "abe236ee00cf90cfca6e36e65c00435d5b21f50a",
+   "kind": "commands",
+   "install_commands": [
+    "git clone --recursive https://github.com/nvlabs/instant-ngp",
+    "cmake . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo",
+    "cmake --build build --config RelWithDebInfo -j"
+   ],
+   "notes": "Windows users are told to download release zips; Linux users must build from source with these commands (prompts '$ ' and 'instant-ngp$ ' stripped)."
+  },
+  {
+   "repo": "shadcn-ui/ui",
+   "sha": "42f3bb63b46a69e52a24bd005cdc9ec15ba7a7b9",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "README only says to visit the external documentation site; installation is not mentioned explicitly."
+  },
+  {
+   "repo": "tailwindlabs/tailwindcss",
+   "sha": "9b2c925c19aae46ff4f9cf54a2fa6d2dbac7fa19",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "README only points to tailwindcss.com for full documentation; installation is not mentioned explicitly."
+  },
+  {
+   "repo": "pallets/flask",
+   "sha": "49943b5a94413a530761350f04e896f76e8d620e",
+   "kind": "none",
+   "install_commands": [],
+   "notes": "No installation section or install command; only a hello-world example and 'flask run' usage."
+  },
+  {
+   "repo": "gofiber/fiber",
+   "sha": "16cdbd2be862b6fb178fb37318e0141b8134e9d3",
+   "kind": "commands",
+   "install_commands": [
+    "go mod init github.com/your/repo",
+    "go get -u github.com/gofiber/fiber/v3"
+   ],
+   "notes": "Library installed into a Go module project; the go install of the Fiber CLI is for v2-to-v3 migration and excluded."
+  },
+  {
+   "repo": "apache/superset",
+   "sha": "b92fcb206166a394742740fa8a2a5162bfaad4be",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "Installation section links to the external quickstart and production deployment docs; no commands in README."
+  },
+  {
+   "repo": "streamlit/streamlit",
+   "sha": "c9fc426306225aa219216fd91a0437e1e8505393",
+   "kind": "commands",
+   "install_commands": [
+    "pip install streamlit",
+    "streamlit hello"
+   ],
+   "notes": "'streamlit hello' is part of the installation block as a verification step."
+  },
+  {
+   "repo": "n8n-io/n8n",
+   "sha": "3895cb31de5731c8425e56e56ff6f1dad1e2aa50",
+   "kind": "commands",
+   "install_commands": [
+    "curl -fsSL https://get.n8n.io | sh",
+    "docker volume create n8n_data",
+    "docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n8n.io/n8nio/n8n"
+   ],
+   "notes": "Install script (requires Docker) is first; manual Docker deployment is the alternative."
+  },
+  {
+   "repo": "scrapy/scrapy",
+   "sha": "1bc0473909e4e5a3d0b62710715b6383c5641765",
+   "kind": "commands",
+   "install_commands": [
+    "pip install scrapy"
+   ],
+   "notes": "README is reStructuredText; single pip command."
+  },
+  {
+   "repo": "junegunn/fzf",
+   "sha": "96028e2a54023a8ff8240e985ae9c8e4f25c0089",
+   "kind": "commands",
+   "install_commands": [
+    "brew install fzf",
+    "sudo apt install fzf"
+   ],
+   "notes": "Many package managers are listed (Homebrew first, Linux packages in a table, git clone + install script also offered)."
+  },
+  {
+   "repo": "jesseduffield/lazygit",
+   "sha": "bbca3df2cd064729bd66b909717cb4709ecd7408",
+   "kind": "commands",
+   "install_commands": [
+    "brew install lazygit",
+    "sudo apt install lazygit"
+   ],
+   "notes": "Binary release download is listed first but has no command; Homebrew is the first command, with many distro-specific alternatives."
+  },
+  {
+   "repo": "yt-dlp/yt-dlp",
+   "sha": "412e7f0a4b0588fe884a02b344ac66a06538475b",
+   "kind": "download",
+   "install_commands": [],
+   "notes": "Installation section is release-binary downloads and a pip/wiki mention without a command; a pip install command for nightly appears only in the UPDATE section."
+  },
+  {
+   "repo": "godotengine/godot",
+   "sha": "b47a795aa585d7bdb589f465e6ffcf15ebb31b9b",
+   "kind": "download",
+   "install_commands": [],
+   "notes": "Binary downloads on the Godot website; compiling from source is a link to external docs."
+  },
+  {
+   "repo": "Genymobile/scrcpy",
+   "sha": "a60891aea193d92e7e5c3942700eca63f9d19a5f",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "'Get the app' only links to in-repo per-OS docs (doc/linux.md, doc/windows.md, doc/macos.md)."
+  }
+ ]
+}

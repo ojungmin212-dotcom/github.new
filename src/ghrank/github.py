@@ -119,6 +119,22 @@ class FileCache:
             pass  # 캐시는 최적화일 뿐 - 실패해도 조회는 계속한다
 
 
+def windows_user_env(name: str) -> str | None:
+    """Windows '사용자 환경 변수'(레지스트리)에서 직접 읽는다. 환경을 물려주지 않는 프로그램
+    (예: Claude Desktop 이 띄운 MCP 서버)에서도 setx·환경 변수 창으로 저장한 토큰을 쓰기 위함."""
+    if sys.platform != "win32":
+        return None
+    try:
+        import winreg
+
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment") as key:
+            value, _kind = winreg.QueryValueEx(key, name)
+    except OSError:
+        return None
+    text = str(value).strip() if value else ""
+    return text or None
+
+
 @dataclass
 class GitHubClient:
     token: str | None = None
@@ -133,7 +149,8 @@ class GitHubClient:
 
     @classmethod
     def from_env(cls, cache: FileCache | None = None, **kwargs) -> GitHubClient:
-        token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or None
+        token = (os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+                 or windows_user_env("GITHUB_TOKEN") or windows_user_env("GH_TOKEN") or None)
         return cls(token=token.strip() if token else None, cache=cache, **kwargs)
 
     # ---- 저수준 ---------------------------------------------------------------
@@ -219,7 +236,13 @@ class GitHubClient:
         owner_repo = full_name.strip().strip("/")
         if owner_repo.count("/") != 1:
             raise GitHubError(f"'owner/repo' 형식이어야 합니다: {full_name}")
-        data = self.search_repositories(f"repo:{owner_repo}", per_page=1)
+        try:
+            data = self.search_repositories(f"repo:{owner_repo}", per_page=1)
+        except GitHubError as exc:
+            # 없는 저장소를 repo: 로 검색하면 GitHub 가 422 로 거부한다 → '찾을 수 없음'으로 알기 쉽게 바꾼다
+            if "(422)" in str(exc) and not isinstance(exc, RateLimitError):
+                raise NotFoundError(f"저장소를 찾을 수 없습니다(비공개이거나 이름이 틀림): {owner_repo}") from exc
+            raise
         items = data.get("items") or []
         if not items:
             raise NotFoundError(f"저장소를 찾을 수 없습니다(비공개이거나 이름이 틀림): {owner_repo}")

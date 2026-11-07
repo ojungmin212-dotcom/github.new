@@ -28,7 +28,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
       - name: 설치
-        run: pip install -e ".[dev]"
+        run: pip install -e ".[dev,mcp]"
       - name: 린트 (ruff)
         run: ruff check src tests
       - name: 타입 검사 (pyright)
@@ -42,6 +42,9 @@ jobs:
           ghrank --version
           ghrank categories > categories.txt
           ghrank categories --format md -o categories.md
+          ghrank mcp --print-config
+      - name: 정확도 측정 (분야 분류, 오프라인)
+        run: python evals/run_eval.py --offline
       - name: 바탕화면 아이콘 만들기 확인 (Windows)
         if: matrix.os == 'windows-latest'
         shell: pwsh

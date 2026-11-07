@@ -1,0 +1,150 @@
+{
+ "pinned_at": "2026-11-07",
+ "note": "홀드아웃: 추출 규칙을 고칠 때 보지 않은 저장소",
+ "targets": [
+  {
+   "repo": "lllyasviel/Fooocus",
+   "sha": "ae05379cc97bc4361ec8b4ec90193dab21be763f",
+   "readme": "readme.md",
+   "raw_url": "https://raw.githubusercontent.com/lllyasviel/Fooocus/ae05379cc97bc4361ec8b4ec90193dab21be763f/readme.md"
+  },
+  {
+   "repo": "upscayl/upscayl",
+   "sha": "a00d55fee90e0f9435d5eaa86e76700df8199af8",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/upscayl/upscayl/a00d55fee90e0f9435d5eaa86e76700df8199af8/README.md"
+  },
+  {
+   "repo": "obsproject/obs-studio",
+   "sha": "7a25c3fd8b5eb87c2d2e0606cae36e32014bc6fa",
+   "readme": "README.rst",
+   "raw_url": "https://raw.githubusercontent.com/obsproject/obs-studio/7a25c3fd8b5eb87c2d2e0606cae36e32014bc6fa/README.rst"
+  },
+  {
+   "repo": "openai/whisper",
+   "sha": "86098128c0b4f24f0e2aa2994de830614b474227",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/openai/whisper/86098128c0b4f24f0e2aa2994de830614b474227/README.md"
+  },
+  {
+   "repo": "fishaudio/fish-speech",
+   "sha": "0f8a12e8a651062fdee9c33a894bdccd3a8513f1",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/fishaudio/fish-speech/0f8a12e8a651062fdee9c33a894bdccd3a8513f1/README.md"
+  },
+  {
+   "repo": "ggml-org/llama.cpp",
+   "sha": "c0ab6e5c0bab3fb21e6cb9d2371f3c41d85ea775",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/c0ab6e5c0bab3fb21e6cb9d2371f3c41d85ea775/README.md"
+  },
+  {
+   "repo": "nomic-ai/gpt4all",
+   "sha": "b666d16db5aeab8b91aaf7963adcee9c643734d7",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/nomic-ai/gpt4all/b666d16db5aeab8b91aaf7963adcee9c643734d7/README.md"
+  },
+  {
+   "repo": "crewAIInc/crewAI",
+   "sha": "73f48320dbe6e2dc7a9bc54fefc6a13637b9485c",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/crewAIInc/crewAI/73f48320dbe6e2dc7a9bc54fefc6a13637b9485c/README.md"
+  },
+  {
+   "repo": "microsoft/autogen",
+   "sha": "d07c667a3239ea4ab7af62a53b0f4ff205a1f23d",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/microsoft/autogen/d07c667a3239ea4ab7af62a53b0f4ff205a1f23d/README.md"
+  },
+  {
+   "repo": "chroma-core/chroma",
+   "sha": "1a3ac2c7c623adbd03ed2508dc27b98cdf26016d",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/chroma-core/chroma/1a3ac2c7c623adbd03ed2508dc27b98cdf26016d/README.md"
+  },
+  {
+   "repo": "qdrant/qdrant",
+   "sha": "222b2e44ab1c3f17e8246396ead6558e45041df7",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/qdrant/qdrant/222b2e44ab1c3f17e8246396ead6558e45041df7/README.md"
+  },
+  {
+   "repo": "JaidedAI/EasyOCR",
+   "sha": "363afb184047ce452e436f4224f3098422df872e",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/JaidedAI/EasyOCR/363afb184047ce452e436f4224f3098422df872e/README.md"
+  },
+  {
+   "repo": "graphdeco-inria/gaussian-splatting",
+   "sha": "54c035f7834b564019656c3e3fcc3646292f727d",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/graphdeco-inria/gaussian-splatting/54c035f7834b564019656c3e3fcc3646292f727d/README.md"
+  },
+  {
+   "repo": "vitejs/vite",
+   "sha": "a579e352a66fbdce6a51d4e1f67006ccf4f91343",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/vitejs/vite/a579e352a66fbdce6a51d4e1f67006ccf4f91343/README.md"
+  },
+  {
+   "repo": "fastapi/fastapi",
+   "sha": "1ca09c13584ca45aa0921e5e40b31d49c5e3135a",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/fastapi/fastapi/1ca09c13584ca45aa0921e5e40b31d49c5e3135a/README.md"
+  },
+  {
+   "repo": "django/django",
+   "sha": "a1f2b45ce5a327f42437bdb620a817839d0bd067",
+   "readme": "README.rst",
+   "raw_url": "https://raw.githubusercontent.com/django/django/a1f2b45ce5a327f42437bdb620a817839d0bd067/README.rst"
+  },
+  {
+   "repo": "pandas-dev/pandas",
+   "sha": "831f55cdb3662a396587a0553c94a24bcefc9c6f",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/pandas-dev/pandas/831f55cdb3662a396587a0553c94a24bcefc9c6f/README.md"
+  },
+  {
+   "repo": "microsoft/playwright",
+   "sha": "07c7069cdbb1f5c7331d3f4d2abd864dcfde745a",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/microsoft/playwright/07c7069cdbb1f5c7331d3f4d2abd864dcfde745a/README.md"
+  },
+  {
+   "repo": "BurntSushi/ripgrep",
+   "sha": "91f5d22ef48bde459d90a8c7dbeab416e97d0f2b",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/BurntSushi/ripgrep/91f5d22ef48bde459d90a8c7dbeab416e97d0f2b/README.md"
+  },
+  {
+   "repo": "sharkdp/bat",
+   "sha": "c231941daa363e67657216922135e3cc2d5a4f93",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/sharkdp/bat/c231941daa363e67657216922135e3cc2d5a4f93/README.md"
+  },
+  {
+   "repo": "cli/cli",
+   "sha": "736c68f674113337685e3eb1f908602a03b8f99b",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/cli/cli/736c68f674113337685e3eb1f908602a03b8f99b/README.md"
+  },
+  {
+   "repo": "bevyengine/bevy",
+   "sha": "526f9e40253348a52a0d0380db98e287e4b5e0b3",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/bevyengine/bevy/526f9e40253348a52a0d0380db98e287e4b5e0b3/README.md"
+  },
+  {
+   "repo": "raysan5/raylib",
+   "sha": "4bfb72d8ff46b74ec8e5c745364406c4f153929f",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/raysan5/raylib/4bfb72d8ff46b74ec8e5c745364406c4f153929f/README.md"
+  },
+  {
+   "repo": "flutter/flutter",
+   "sha": "208e10f65dedf30d9f69930cfb5f2418391610c4",
+   "readme": "README.md",
+   "raw_url": "https://raw.githubusercontent.com/flutter/flutter/208e10f65dedf30d9f69930cfb5f2418391610c4/README.md"
+  }
+ ]
+}

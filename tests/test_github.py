@@ -190,3 +190,10 @@ def test_default_cache_dir(monkeypatch, tmp_path):
 def test_parse_time():
     assert parse_time("2026-11-05T01:02:03Z").isoformat() == "2026-11-05T01:02:03+00:00"
     assert parse_time(None) is None and parse_time("garbage") is None
+
+
+def test_get_repository_422_means_not_found():
+    t = FakeTransport()
+    t.add("search", Response(422, {}, b'{"message": "Validation Failed", "errors": [{"message": "cannot be searched"}]}'))
+    with pytest.raises(NotFoundError, match="찾을 수 없습니다"):
+        make(t).get_repository("no-such/repo")

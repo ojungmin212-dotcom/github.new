@@ -62,8 +62,9 @@ key = "rag"
 name = "RAG·검색·벡터DB"
 topics = ["rag", "retrieval-augmented-generation", "vector-database", "semantic-search", "embeddings", "knowledge-base",
           "vector-search", "search-engine", "embedding", "graphrag", "full-text-search"]
-keywords = ["rag", "retrieval", "vector", "search", "embedding", "knowledge",
-            "검색", "벡터", "知识库", "检索"]
+# "search"·"knowledge" 단독은 노트 앱·크롤러까지 잡아 정확도를 떨어뜨려(정답 데이터로 측정) 구체적인 표현만 쓴다
+keywords = ["rag", "retrieval", "vector", "embedding", "semantic search", "search engine", "full-text search",
+            "knowledge base", "question answering", "검색 엔진", "벡터", "知识库", "检索"]
 aliases = ["rag", "검색증강", "벡터", "벡터db", "벡터디비", "임베딩", "지식베이스", "문서검색", "검색엔진",
            "vectordb", "vector-database", "embedding"]
 
@@ -108,8 +109,9 @@ key = "data"
 name = "데이터 분석·시각화"
 topics = ["data-visualization", "data-analysis", "dashboard", "business-intelligence", "charts", "data-science",
           "visualization", "analytics", "pandas", "jupyter", "bi", "chart"]
-keywords = ["data", "chart", "visuali", "dashboard", "analytic", "plot", "notebook",
-            "데이터", "시각화", "数据", "可视化"]
+# "data" 단독은 채용 공고 목록·에이전트 스킬까지 잡아(정답 데이터로 측정) 구체적인 표현만 쓴다
+keywords = ["data analysis", "data visuali", "dataframe", "data app", "data science", "chart", "visuali", "dashboard",
+            "analytic", "plot", "notebook", "business intelligence", "데이터 분석", "시각화", "数据分析", "可视化"]
 aliases = ["데이터", "시각화", "차트", "대시보드", "데이터분석", "데이터시각화", "data", "dataviz", "chart",
            "dashboard", "analytics"]
 

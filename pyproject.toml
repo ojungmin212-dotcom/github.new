@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ghrank"
-version = "0.1.0"
+version = "0.2.0"
 description = "GitHub 스타 순위 기반 분야별 저장소 추천 · 검색 · 설치/사용/주의점 요약 CLI"
 readme = "README.md"
 license = "MIT"
@@ -14,6 +14,7 @@ dependencies = []   # 표준 라이브러리만 사용
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "ruff>=0.6", "pyright>=1.1.380"]
+mcp = ["mcp>=2.3,<3"]   # Claude 연결(ghrank mcp)에만 필요
 
 [project.scripts]
 ghrank = "ghrank.cli:main"
@@ -22,7 +23,7 @@ ghrank = "ghrank.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-ghrank = ["categories.toml", "web/*"]
+ghrank = ["categories.toml", "web/*", "skill/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

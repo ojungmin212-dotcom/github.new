@@ -1,0 +1,2196 @@
+{
+ "labeled_at": "2026-11-07",
+ "labeler": "claude-subagent (metadata only)",
+ "labels": {
+  "image": {
+   "AUTOMATIC1111/stable-diffusion-webui": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Comfy-Org/ComfyUI": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "unslothai/unsloth": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "calesthio/OpenMontage": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "storytold/photocraft": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "mudler/LocalAI": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "khoj-ai/khoj": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "TencentARC/GFPGAN": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "xinntao/Real-ESRGAN": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "huggingface/diffusers": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Anil-matcha/Open-Generative-AI": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "flameshot-org/flameshot": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "ATH-MaaS/Pixelle-Video": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "op7418/guizang-ppt-skill": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "invoke-ai/InvokeAI": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "nagadomi/waifu2x": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "junyanz/pytorch-CycleGAN-and-pix2pix": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "bloc97/Anime4K": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "HBAI-Ltd/Toonflow-app": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "sczhou/CodeFormer": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "IDEA-Research/Grounded-Segment-Anything": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "Evolink-AI/awesome-gpt-image-2-API-Prompts": {
+    "relevant": true,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "AaronFeng753/Waifu2x-Extension-GUI": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Blinue/Magpie": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   }
+  },
+  "video": {
+   "heygen-com/hyperframes": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "calesthio/OpenMontage": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "mifi/lossless-cut": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Anil-matcha/Open-Generative-AI": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ATH-MaaS/Pixelle-Video": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "hypit-ai/hypit": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "HBAI-Ltd/Toonflow-app": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "latent-spaces/brag": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "KlingAIResearch/LivePortrait": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Wan-Video/Wan2.2": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "storytold/filmcraft": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Vincentwei1021/video-shotcraft": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "duixcom/Duix-Avatar": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "mltframework/shotcut": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Zulko/moviepy": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "jub0t/Concat": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "waooAI/waoowaoo": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "palmier-io/palmier-pro": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "krillinai/OpenCreator": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "yihui-dev/awesome-opus5-5-videos": {
+    "relevant": true,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "zai-org/CogVideo": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "lemomo-ai/lemo-opuscar": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "HKUDS/ViMax": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Tencent-Hunyuan/HunyuanVideo": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   }
+  },
+  "audio": {
+   "huggingface/transformers": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "harry0703/MoneyPrinterTurbo": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "debpalash/VoiceStudio": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "unslothai/unsloth": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "calesthio/OpenMontage": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "RVC-Boss/GPT-SoVITS": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "CorentinJ/Real-Time-Voice-Cloning": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ggml-org/whisper.cpp": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "mudler/LocalAI": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "coqui-ai/TTS": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "OpenBMB/VoxCPM": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "2noise/ChatTTS": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "myshell-ai/OpenVoice": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "cjpais/Handy": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "babysor/MockingBird": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "fishaudio/fish-speech": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Zackriya-Solutions/meetily": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "ATH-MaaS/Pixelle-Video": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "mastra-ai/mastra": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "mozilla-ai/llamafile": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "SYSTRAN/faster-whisper": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "readest/readest": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "m-bain/whisperX": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "index-tts/index-tts": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   }
+  },
+  "llm": {
+   "affaan-m/ECC": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "NousResearch/hermes-agent": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "firecrawl/firecrawl": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Significant-Gravitas/AutoGPT": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "ollama/ollama": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "DietrichGebert/ponytail": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "f/prompts.chat": {
+    "relevant": true,
+    "is_list": true,
+    "educational": false,
+    "borderline": true
+   },
+   "huggingface/transformers": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "langgenius/dify": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "open-webui/open-webui": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "langflow-ai/langflow": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "langchain-ai/langchain": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Graphify-Labs/graphify": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "harry0703/MoneyPrinterTurbo": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "microsoft/generative-ai-for-beginners": {
+    "relevant": true,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "TauricResearch/TradingAgents": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "browser-use/browser-use": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "JuliusBrussee/caveman": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "paperclipai/paperclip": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "rasbt/LLMs-from-scratch": {
+    "relevant": true,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "vllm-project/vllm": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "tt-a1i/archify": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "OpenHands/OpenHands": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "unclecode/crawl4ai": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   }
+  },
+  "agent": {
+   "morluto/rea": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "affaan-m/ECC": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "deepseek-ai/deepseek-harness": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "NousResearch/hermes-agent": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "n8n-io/n8n": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "firecrawl/firecrawl": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "Significant-Gravitas/AutoGPT": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "DietrichGebert/ponytail": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "langgenius/dify": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Snailclimb/JavaGuide": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "open-webui/open-webui": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "langflow-ai/langflow": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "farion1231/cc-switch": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "langchain-ai/langchain": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Shubhamsaboo/awesome-llm-apps": {
+    "relevant": true,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "Graphify-Labs/graphify": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "browser-use/browser-use": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "stablyai/orca": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "thedotmack/claude-mem": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "paperclipai/paperclip": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Leonxlnx/taste-skill": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "Panniantong/Agent-Reach": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "google-gemini/gemini-cli": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "D4Vinci/Scrapling": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   }
+  },
+  "rag": {
+   "open-webui/open-webui": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "langchain-ai/langchain": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "Shubhamsaboo/awesome-llm-apps": {
+    "relevant": true,
+    "is_list": false,
+    "educational": true,
+    "borderline": true
+   },
+   "Graphify-Labs/graphify": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "microsoft/generative-ai-for-beginners": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "supabase/supabase": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "thedotmack/claude-mem": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "infiniflow/ragflow": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "PaddlePaddle/PaddleOCR": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Egonex-AI/Understand-Anything": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "unclecode/crawl4ai": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "datawhalechina/hello-agents": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "dair-ai/Prompt-Engineering-Guide": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "headroomlabs-ai/headroom": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "toeverything/AFFiNE": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "mem0ai/mem0": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "Mintplex-Labs/anything-llm": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "meilisearch/meilisearch": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "pathwaycom/serviette": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "bojieli/ai-agent-book": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "HKUDS/DeepTutor": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "run-llama/llama_index": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "jeecgboot/JeecgBoot": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "siyuan-note/siyuan": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   }
+  },
+  "vision": {
+   "ruvnet/RuView": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "PaddlePaddle/PaddleOCR": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "opencv/opencv": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Developer-Y/cs-video-courses": {
+    "relevant": false,
+    "is_list": true,
+    "educational": true,
+    "borderline": false
+   },
+   "opendatalab/MinerU": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "d2l-ai/d2l-zh": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "tesseract-ocr/tesseract": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "rohitg00/ai-engineering-from-scratch": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "microsoft/AI-For-Beginners": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "ultralytics/ultralytics": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ultralytics/yolov5": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ageitgey/face_recognition": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "roboflow/supervision": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "mudler/LocalAI": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "hiroi-sora/Umi-OCR": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "paperless-ngx/paperless-ngx": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "ShareX/ShareX": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "naptha/tesseract.js": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ashishpatel26/500-AI-Machine-learning-Deep-learning-Computer-vision-NLP-Projects-with-code": {
+    "relevant": false,
+    "is_list": true,
+    "educational": true,
+    "borderline": false
+   },
+   "google-ai-edge/mediapipe": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "blakeblackshear/frigate": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "ocrmypdf/OCRmyPDF": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "CMU-Perceptual-Computing-Lab/openpose": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "open-mmlab/mmdetection": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   }
+  },
+  "3d": {
+   "mrdoob/three.js": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "DavidHDev/react-bits": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "FreeCAD/FreeCAD": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "pmndrs/react-three-fiber": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "4ian/GDevelop": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "BabylonJS/Babylon.js": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "libgdx/libgdx": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "pascalorg/editor": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ssloy/tinyrenderer": {
+    "relevant": true,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "blender/blender": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "img2threejs/img2threejs": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "lettier/3d-game-shaders-for-beginners": {
+    "relevant": true,
+    "is_list": false,
+    "educational": true,
+    "borderline": true
+   },
+   "aframevr/aframe": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "NVlabs/instant-ngp": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "playcanvas/engine": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "CesiumGS/cesium": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "Tencent-Hunyuan/Hunyuan3D-2": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "MonoGame/MonoGame": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "microsoft/TRELLIS": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "isl-org/Open3D": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "alicevision/Meshroom": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "mapbox/mapbox-gl-js": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "nerfstudio-project/nerfstudio": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "bmild/nerf": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   }
+  },
+  "frontend": {
+   "freeCodeCamp/freeCodeCamp": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": true
+   },
+   "morluto/rea": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "react/react": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "vuejs/vue": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "f/prompts.chat": {
+    "relevant": false,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "twbs/bootstrap": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "langgenius/dify": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "nextlevelbuilder/ui-ux-pro-max-skill": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "vercel/next.js": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "shadcn-ui/ui": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "react/react-native": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "justjavac/free-programming-books-zh_CN": {
+    "relevant": false,
+    "is_list": true,
+    "educational": true,
+    "borderline": false
+   },
+   "supabase/supabase": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Leonxlnx/taste-skill": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "react/create-react-app": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ruvnet/RuView": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ant-design/ant-design": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "mui/material-ui": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "tailwindlabs/tailwindcss": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "oven-sh/bun": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "storybookjs/storybook": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "PanJiaChen/vue-element-admin": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ChatGPTNextWeb/NextChat": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "vitejs/vite": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   }
+  },
+  "backend": {
+   "flutter/flutter": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "goldbergyoni/nodebestpractices": {
+    "relevant": true,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "angular/angular": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "hoppscotch/hoppscotch": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "nestjs/nest": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "binhnguyennus/awesome-scalability": {
+    "relevant": true,
+    "is_list": true,
+    "educational": true,
+    "borderline": true
+   },
+   "pallets/flask": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "strapi/strapi": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "nocodb/nocodb": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "twentyhq/twenty": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "appwrite/appwrite": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "gatsbyjs/gatsby": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "expo/expo": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "prettier/prettier": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "TanStack/query": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "DovAmir/awesome-design-patterns": {
+    "relevant": false,
+    "is_list": true,
+    "educational": true,
+    "borderline": true
+   },
+   "GitHubDaily/GitHubDaily": {
+    "relevant": false,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "usebruno/bruno": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "karanpratapsingh/system-design": {
+    "relevant": true,
+    "is_list": false,
+    "educational": true,
+    "borderline": true
+   },
+   "LeCoupa/awesome-cheatsheets": {
+    "relevant": false,
+    "is_list": true,
+    "educational": true,
+    "borderline": false
+   },
+   "payloadcms/payload": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Kong/kong": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ashishps1/awesome-system-design-resources": {
+    "relevant": true,
+    "is_list": true,
+    "educational": true,
+    "borderline": true
+   },
+   "apache/dubbo": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   }
+  },
+  "data": {
+   "d3/d3": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "microsoft/ML-For-Beginners": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": true
+   },
+   "koala73/worldmonitor": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "PanJiaChen/vue-element-admin": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "netdata/netdata": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "Asabeneh/30-Days-Of-Python": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "grafana/grafana": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "apache/superset": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "strapi/strapi": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "scikit-learn/scikit-learn": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "apache/echarts": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "cathrynlavery/diagram-design": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "keras-team/keras": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "sansan0/TrendRadar": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "pi-hole/pi-hole": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "K-Dense-AI/scientific-agent-skills": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "pandas-dev/pandas": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "metabase/metabase": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "GokuMohandas/Made-With-ML": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "pixijs/pixijs": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "SimplifyJobs/Summer2027-Internships": {
+    "relevant": false,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "apache/airflow": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "streamlit/streamlit": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ColorlibHQ/AdminLTE": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   }
+  },
+  "automation": {
+   "n8n-io/n8n": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "firecrawl/firecrawl": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "harry0703/MoneyPrinterTurbo": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "browser-use/browser-use": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "paperclipai/paperclip": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "D4Vinci/Scrapling": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "unclecode/crawl4ai": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ComposioHQ/awesome-claude-skills": {
+    "relevant": false,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "scrapy/scrapy": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "huginn/huginn": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "HKUDS/nanobot": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "NaiboWang/EasySpider": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "lightpanda-io/browser": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ToolJet/ToolJet": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "JCodesMore/ai-website-cloner-template": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "dgtlmoon/changedetection.io": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "freestylefly/awesome-gpt-image-2": {
+    "relevant": false,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "CloakHQ/CloakBrowser": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ScrapeGraphAI/Scrapegraph-ai": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "conductor-oss/conductor": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "feder-cr/Jobs_Applier_AI_Agent": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "iawia002/lux": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "jackwener/OpenCLI": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "cheeriojs/cheerio": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   }
+  },
+  "devtools": {
+   "morluto/rea": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "affaan-m/ECC": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "n8n-io/n8n": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "yt-dlp/yt-dlp": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "ohmyzsh/ohmyzsh": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "DietrichGebert/ponytail": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "nextlevelbuilder/ui-ux-pro-max-skill": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "Graphify-Labs/graphify": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "excalidraw/excalidraw": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "stablyai/orca": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "Panniantong/Agent-Reach": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "google-gemini/gemini-cli": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "microsoft/terminal": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "sherlock-project/sherlock": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "puppeteer/puppeteer": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "tt-a1i/archify": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "OpenHands/OpenHands": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "rtk-ai/rtk": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "junegunn/fzf": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "jesseduffield/lazygit": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "hoppscotch/hoppscotch": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ComposioHQ/awesome-claude-skills": {
+    "relevant": false,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "Eugeny/tabby": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "tw93/Mole": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   }
+  },
+  "game": {
+   "godotengine/godot": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "ocornut/imgui": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "dkhamsing/open-source-ios-apps": {
+    "relevant": false,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "bevyengine/bevy": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "pixijs/pixijs": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "phaserjs/phaser": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Donchitos/Claude-Code-Game-Studios": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "raysan5/raylib": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "emilk/egui": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "Anuken/Mindustry": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "4ian/GDevelop": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "BabylonJS/Babylon.js": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "clockworklabs/SpacetimeDB": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "mxgmn/WaveFunctionCollapse": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "libgdx/libgdx": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "game1024/OpenSpeedy": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "you-dont-need/You-Dont-Need-JavaScript": {
+    "relevant": false,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "lettier/3d-game-shaders-for-beginners": {
+    "relevant": true,
+    "is_list": false,
+    "educational": true,
+    "borderline": false
+   },
+   "ppy/osu": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "cocos2d/cocos2d-x": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "lichess-org/lila": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "kitao/pyxel": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "mahmoud/awesome-python-applications": {
+    "relevant": false,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "bobeff/open-source-games": {
+    "relevant": false,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   }
+  },
+  "mobile": {
+   "morluto/rea": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "flutter/flutter": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Genymobile/scrcpy": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "rustdesk/rustdesk": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "react/react-native": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Hack-with-Github/Awesome-Hacking": {
+    "relevant": false,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "justjavac/free-programming-books-zh_CN": {
+    "relevant": false,
+    "is_list": true,
+    "educational": true,
+    "borderline": false
+   },
+   "immich-app/immich": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "jaywcjlove/awesome-mac": {
+    "relevant": false,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "localsend/localsend": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "storybookjs/storybook": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "AppFlowy-IO/AppFlowy": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "enaqx/awesome-react": {
+    "relevant": false,
+    "is_list": true,
+    "educational": true,
+    "borderline": false
+   },
+   "tw93/Mole": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "2dust/v2rayNG": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "termux/termux-app": {
+    "relevant": true,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "tldr-pages/tldr": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "Solido/awesome-flutter": {
+    "relevant": true,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "chen08209/FlClash": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": true
+   },
+   "FiloSottile/mkcert": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "wasabeef/awesome-android-ui": {
+    "relevant": true,
+    "is_list": true,
+    "educational": false,
+    "borderline": false
+   },
+   "appwrite/appwrite": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "laurent22/joplin": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   },
+   "google/material-design-icons": {
+    "relevant": false,
+    "is_list": false,
+    "educational": false,
+    "borderline": false
+   }
+  }
+ }
+}

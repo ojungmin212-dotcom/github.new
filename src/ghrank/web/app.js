@@ -260,6 +260,9 @@ function repoCard(repo, rank, { openGuide = null } = {}) {
     repo.language || "언어 미표기",
     repo.license || "라이선스 없음",
     repo.pushed_at ? "마지막 푸시 " + repo.pushed_at.slice(0, 10) : null,
+    repo.score
+      ? `추천점수 ${repo.score.score} (인기 ${repo.score.popularity} · 증가세 ${repo.score.momentum} · 최근성 ${repo.score.freshness})`
+      : null,
   ].filter(Boolean);
   const caveats = repo.caveats || [];
   const guideBox = el("div", { class: "guide", hidden: true });

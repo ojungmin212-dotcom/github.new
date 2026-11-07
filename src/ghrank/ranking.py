@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 import re
 from dataclasses import dataclass, field
 from datetime import UTC, date, datetime, timedelta
@@ -9,7 +10,10 @@ from datetime import UTC, date, datetime, timedelta
 from ghrank.categories import Category, has_non_ascii
 from ghrank.github import GitHubClient, parse_time
 
-SORT_KEYS = ("stars", "forks", "updated")
+SORT_KEYS = ("stars", "forks", "updated", "score")
+# "score"(추천 순)는 GitHub 정렬이 아니라, 스타 상위 후보(최대 100개)를 받아 아래 추천 점수로 다시 줄 세운다.
+SCORE_POOL = 100
+SCORE_WEIGHTS = {"popularity": 0.35, "momentum": 0.40, "freshness": 0.25}
 PER_PAGE = 100
 MAX_PAGES = 3  # 검색 API 호출을 분야당 최대 3회로 제한(관련 없는 저장소를 걸러 내고도 N개가 안 될 때만 더 가져옴)
 # 관련성: 이름·설명에 분야 키워드가 없을 때, 저장소 토픽 중 분야 토픽 비율이 이 값 이상이면 관련으로 본다.
@@ -174,6 +178,48 @@ class Ranking:
     dropped_irrelevant: int = 0
     category: Category | None = None
     notes: list[str] = field(default_factory=list)
+    sort: str = "stars"
+    # 이전 보고서와 비교했을 때만 채운다(None = 비교 안 함). full_name → {"prev_rank", "delta", "new"}
+    changes: dict[str, dict] | None = None
+    dropped_out: list[str] = field(default_factory=list)  # 이전 순위에는 있었는데 이번에 빠진 저장소
+
+
+def apply_comparison(result: Ranking, previous: dict[str, int] | None) -> None:
+    """이전 순위(full_name → 순위)와 비교해 신규 진입·상승·하락·이탈을 기록한다."""
+    prev = previous or {}
+    result.changes = {}
+    for i, repo in enumerate(result.repos, 1):
+        before = prev.get(repo.full_name)
+        result.changes[repo.full_name] = {
+            "prev_rank": before,
+            "delta": None if before is None else before - i,
+            "new": before is None,
+        }
+    now_names = {r.full_name for r in result.repos}
+    result.dropped_out = [name for name, _ in sorted(prev.items(), key=lambda kv: kv[1]) if name not in now_names]
+
+
+def recommend_score(repo: Repo, now: datetime) -> dict[str, float]:
+    """추천 점수(0~100)와 구성 요소(각 0~1). 공식을 숨기지 않고 화면·보고서에 함께 보여 준다.
+
+    - 인기 popularity  = log10(스타+1) / 6            (스타 100만 → 1)
+    - 증가세 momentum  = log10(연평균 스타+1) / 5      (생성 이후 연 10만 스타 → 1, 오래된 레포 편향 완화)
+    - 최근성 freshness = exp(-마지막 푸시 경과일 / 180) (오늘 1, 6개월 0.37, 1년 0.13)
+    """
+    popularity = min(1.0, math.log10(repo.stars + 1) / 6)
+    created = repo.created_at or now
+    age_years = max((now - created).days / 365.25, 0.5)  # 반년 미만 신생 레포의 과대평가 방지
+    momentum = min(1.0, math.log10(repo.stars / age_years + 1) / 5)
+    days = max(0, (now - repo.pushed_at).days) if repo.pushed_at else 3650
+    freshness = math.exp(-days / 180)
+    w = SCORE_WEIGHTS
+    score = 100 * (w["popularity"] * popularity + w["momentum"] * momentum + w["freshness"] * freshness)
+    return {
+        "score": round(score, 1),
+        "popularity": round(popularity, 3),
+        "momentum": round(momentum, 3),
+        "freshness": round(freshness, 3),
+    }
 
 
 def rank(
@@ -188,10 +234,13 @@ def rank(
     if filters.sort not in SORT_KEYS:
         raise ValueError(f"정렬 기준은 {', '.join(SORT_KEYS)} 중 하나여야 합니다")
     now = now or datetime.now(UTC)
-    result = Ranking(title=title, query=query, fetched_at=now, repos=[], total_count=0, scanned=0, category=category)
+    result = Ranking(title=title, query=query, fetched_at=now, repos=[], total_count=0, scanned=0, category=category,
+                     sort=filters.sort)
+    by_score = filters.sort == "score"
+    want = max(top, SCORE_POOL) if by_score else top  # 추천 순은 후보를 넉넉히 모은 뒤 다시 줄 세운다
     seen: set[str] = set()
     for page in range(1, MAX_PAGES + 1):
-        data = client.search_repositories(query, sort=filters.sort, per_page=PER_PAGE, page=page)
+        data = client.search_repositories(query, sort="stars" if by_score else filters.sort, per_page=PER_PAGE, page=page)
         items = data.get("items") or []
         result.total_count = int(data.get("total_count") or 0)
         if data.get("incomplete_results"):
@@ -209,8 +258,13 @@ def rank(
                 result.dropped_irrelevant += 1
                 continue
             result.repos.append(repo)
-            if len(result.repos) >= top:
-                return result
-        if len(items) < PER_PAGE or page * PER_PAGE >= min(result.total_count, 1000):
+            if len(result.repos) >= want:
+                break
+        # 추천 순도 다음 쪽은 개수가 모자랄 때만 가져온다(검색 호출 수를 스타 순과 같게 유지)
+        if len(result.repos) >= top or len(items) < PER_PAGE or page * PER_PAGE >= min(result.total_count, 1000):
             break
+    if by_score:
+        result.repos.sort(key=lambda r: recommend_score(r, now)["score"], reverse=True)
+        result.notes.append(f"추천 순: 스타 상위 후보 {len(result.repos)}개를 인기·증가세·최근성 점수로 다시 정렬했습니다")
+        result.repos = result.repos[:top]
     return result

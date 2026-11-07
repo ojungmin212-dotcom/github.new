@@ -1,8 +1,9 @@
-"""명령줄 진입점: ghrank categories | top | find | guide | web"""
+"""명령줄 진입점: ghrank categories | top | find | guide | web | mcp"""
 
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass, field
@@ -13,7 +14,7 @@ from ghrank import __version__, render
 from ghrank.categories import Category, CategoryError, compact, has_non_ascii, load_categories, match_categories, resolve_category
 from ghrank.github import FileCache, GitHubClient, GitHubError, RateLimitError
 from ghrank.guide import Guide, build_guide
-from ghrank.ranking import SORT_KEYS, Filters, Ranking, Repo, category_query, free_query, rank
+from ghrank.ranking import SORT_KEYS, Filters, Ranking, Repo, apply_comparison, category_query, free_query, rank
 
 DEFAULT_TOP = 12
 DEFAULT_CACHE_HOURS = 6.0
@@ -64,7 +65,8 @@ def build_parser() -> argparse.ArgumentParser:
     ranking = argparse.ArgumentParser(add_help=False)
     r = ranking.add_argument_group("순위 옵션")
     r.add_argument("-n", "--top", type=_top, default=DEFAULT_TOP, help=f"분야별 개수(기본 {DEFAULT_TOP}, 최대 100)")
-    r.add_argument("--sort", choices=SORT_KEYS, default="stars", help="정렬 기준(기본 stars)")
+    r.add_argument("--sort", choices=SORT_KEYS, default="stars",
+                   help="정렬 기준: stars(기본)·forks·updated·score(추천 순: 인기·증가세·최근성)")
     r.add_argument("--lang", help="주 언어 한정 (예: python, typescript)")
     r.add_argument("--min-stars", type=int, help="최소 스타 수")
     r.add_argument("--active-days", type=_positive, help="최근 N일 안에 푸시된 저장소만")
@@ -72,6 +74,8 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--include-lists", action="store_true", help="awesome-* 같은 링크 모음 저장소도 포함")
     r.add_argument("--loose", action="store_true", help="분야 관련성 필터를 끔(토픽만 맞으면 포함)")
     r.add_argument("--guide", action="store_true", help="저장소마다 README 에서 설치·사용법·주의점을 추출")
+    r.add_argument("--compare", type=Path, metavar="이전.json",
+                   help="이전 --format json 결과와 비교해 신규 진입(NEW)·상승(▲)·하락(▼)·이탈을 표시")
 
     p = argparse.ArgumentParser(
         prog="ghrank",
@@ -98,6 +102,12 @@ def build_parser() -> argparse.ArgumentParser:
     w.add_argument("--no-browser", action="store_true", help="브라우저를 자동으로 열지 않음")
     w.add_argument("--idle-minutes", type=float, default=0, help="화면을 N분 동안 안 쓰면 자동 종료(기본 0 = 끄지 않음)")
     w.add_argument("--shortcut", action="store_true", help="(Windows) 바탕화면에 실행 아이콘을 만들고 끝냄")
+
+    m = sub.add_parser("mcp", parents=[base, net], help="Claude 와 연결하는 MCP 서버(Claude Desktop·Claude Code 용)")
+    mg = m.add_mutually_exclusive_group()
+    mg.add_argument("--install", action="store_true", help="Claude Desktop 설정에 ghrank 를 등록하고 끝냄")
+    mg.add_argument("--install-skill", action="store_true", help="Claude Code 개인 스킬 폴더에 ghrank 스킬을 넣고 끝냄")
+    mg.add_argument("--print-config", action="store_true", help="연결 방법과 설정 예시를 보여 주고 끝냄")
     return p
 
 
@@ -117,7 +127,35 @@ def _filters(args: argparse.Namespace) -> Filters:
 
 
 def _sort_label(sort: str) -> str:
-    return {"stars": "스타 순", "forks": "포크 순", "updated": "최근 업데이트 순"}[sort]
+    return {"stars": "스타 순", "forks": "포크 순", "updated": "최근 업데이트 순", "score": "추천 순"}[sort]
+
+
+def load_previous(path: Path) -> dict[str, dict[str, int]]:
+    """이전 --format json 결과 → {분야 key 또는 제목: {full_name: 순위}}."""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise ValueError(f"비교할 이전 결과를 읽을 수 없습니다: {path} ({exc})") from exc
+    rankings = data.get("rankings") if isinstance(data, dict) else None
+    if not isinstance(rankings, list):
+        raise ValueError(f"이전 결과 형식이 아닙니다(--format json 결과가 필요): {path}")
+    out: dict[str, dict[str, int]] = {}
+    for r in rankings:
+        if not isinstance(r, dict):
+            continue
+        key = r.get("category") or r.get("title")
+        raw = r.get("repos")
+        repos = raw if isinstance(raw, list) else []
+        out[str(key)] = {str(x["full_name"]): int(x["rank"]) for x in repos if isinstance(x, dict) and "full_name" in x}
+    return out
+
+
+def apply_previous(report: Report, previous: dict[str, dict[str, int]]) -> None:
+    for r in report.rankings:
+        key = r.category.key if r.category else r.title
+        apply_comparison(r, previous.get(key))
+        if key not in previous:
+            r.notes.append("이전 결과에 이 분야가 없어 모두 NEW 로 표시합니다")
 
 
 def _fetch_guides(client: GitHubClient, repos: list[Repo], report: Report, now: datetime, log: Callable[[str], None]) -> None:
@@ -310,6 +348,26 @@ def main(argv: Sequence[str] | None = None, client: GitHubClient | None = None, 
 
         return create_shortcut(log)
 
+    if args.command == "mcp" and (args.install or args.install_skill or args.print_config):
+        from ghrank import mcp_server
+
+        if args.print_config:
+            print(mcp_server.setup_text())
+            return 0
+        try:
+            if args.install:
+                path, backup = mcp_server.install_claude_desktop()
+                log(f"Claude Desktop 설정에 ghrank 를 등록했습니다: {path}")
+                if backup:
+                    log(f"기존 설정은 {backup} 에 보관했습니다")
+                log("Claude Desktop 을 완전히 종료했다가 다시 여세요.")
+            else:
+                log(f"Claude Code 스킬을 넣었습니다: {mcp_server.install_claude_code_skill()}")
+        except (OSError, ValueError) as exc:
+            print(f"오류: {exc}", file=sys.stderr)
+            return 1
+        return 0
+
     if client is None:
         cache = None if args.no_cache else FileCache(FileCache.default_dir(), args.cache_hours * 3600)
         client = GitHubClient.from_env(cache=cache, max_wait=args.max_wait, log=log)
@@ -321,15 +379,23 @@ def main(argv: Sequence[str] | None = None, client: GitHubClient | None = None, 
 
         return serve(args, categories, client, log)
 
+    if args.command == "mcp":
+        from ghrank.mcp_server import run_stdio
+
+        return run_stdio(client, categories, log)
+
     try:
         if args.command == "guide":
             items = cmd_guide(args, client, now, log)
             _emit(_render_guides(items, args.format, now), args.output)
             return 0 if all(isinstance(i, Guide) for i in items) else 1
+        previous = load_previous(args.compare) if args.compare else None
         if args.command == "top":
             report = cmd_top(args, categories, client, now, log)
         else:
             report = cmd_find(args, categories, client, now, log)
+        if previous is not None:
+            apply_previous(report, previous)
     except (CategoryError, ValueError) as exc:
         print(f"오류: {exc}", file=sys.stderr)
         return 1

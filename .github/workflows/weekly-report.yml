@@ -1,0 +1,50 @@
+# 매주 월요일 09:17(한국 시간) 15개 분야 순위를 만들어 reports/ 에 커밋한다.
+# 지난주 결과(reports/latest.json)와 비교해 신규 진입(NEW)·상승(▲)·하락(▼)·이탈을 표시한다.
+# 결과: reports/latest.md (휴대폰 GitHub 앱·웹에서 바로 읽힘), 지난 보고서는 reports/history/
+name: 주간 보고서
+
+on:
+  schedule:
+    - cron: "17 0 * * 1"   # 월요일 00:17 UTC = 09:17 KST (정각 혼잡을 피해 17분)
+  workflow_dispatch:       # Actions 화면에서 수동 실행
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: 설치
+        run: pip install .
+      - name: 보고서 만들기
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # 검색 한도 분당 30회
+        run: |
+          mkdir -p reports/history
+          compare=""
+          if [ -f reports/latest.json ]; then compare="--compare reports/latest.json"; fi
+          # 일부 분야가 실패해도(종료 코드 1) 받은 결과는 남긴다. 두 번째 실행은 캐시를 써서 추가 호출이 없다.
+          ghrank top -q $compare --format json -o reports/new.json || true
+          ghrank top -q $compare --format md -o reports/new.md || true
+          test -s reports/new.json && test -s reports/new.md
+          mv reports/new.json reports/latest.json
+          mv reports/new.md reports/latest.md
+          cp reports/latest.md "reports/history/$(date -u +%Y-%m-%d).md"
+      - name: 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports
+          if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
+          git commit -m "chore(report): 주간 보고서 $(date -u +%Y-%m-%d)"
+          git push

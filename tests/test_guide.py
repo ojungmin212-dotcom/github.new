@@ -231,3 +231,93 @@ def test_fence_inside_list_item_with_deep_indent():
 def test_install_section_with_links_only_note():
     g = build_guide(repo(), "# App\n## Installation\nSee the [docs](https://docs.example/install).\n", NOW)
     assert any("'Installation' 절에 명령어 없이" in n for n in g.notes)
+
+
+# ---------------------------------------------------------------------------
+# 0.2: 정답 데이터로 찾은 문제들의 회귀 방지
+# ---------------------------------------------------------------------------
+from ghrank.guide import inline_commands, looks_like_rst, normalize_readme, rst_to_markdown  # noqa: E402
+
+RST = """Scrapy
+======
+
+Scrapy is a framework.
+
+.. |logo| image:: https://x/logo.svg
+   :target: https://scrapy.org
+
+Installation
+------------
+
+The quick way::
+
+    pip install scrapy
+
+Or with conda:
+
+.. code-block:: bash
+   :linenos:
+
+   conda install -c conda-forge scrapy
+
+Use ``scrapy startproject`` to begin.
+"""
+
+
+def test_rst_readme_is_converted_and_extracted():
+    assert looks_like_rst(RST) and not looks_like_rst("# Title\n```\nx\n```")
+    md = rst_to_markdown(RST)
+    assert "# Scrapy" in md and "## Installation" in md and "`scrapy startproject`" in md
+    install, _, source = extract_install_usage(RST)
+    assert source == "section"
+    assert [b.code for b in install] == ["pip install scrapy", "conda install -c conda-forge scrapy"]
+
+
+def test_rst_overline_title_and_plain_text_passthrough():
+    md = rst_to_markdown("=====\nTitle\n=====\n\nbody\n")
+    assert md.startswith("# Title") and "body" in md
+    assert normalize_readme("# md title\ntext") == "# md title\ntext"
+
+
+def test_install_commands_in_table_inline_code():
+    md = ("## Installation\n\n| OS | Command |\n|---|---|\n| Debian | ``apt install ocrmypdf`` |\n"
+          "| macOS | `brew install ocrmypdf` |\n| note | `--help` |\n")
+    install, _, _ = extract_install_usage(md)
+    assert install[0].code == "apt install ocrmypdf\nbrew install ocrmypdf"
+    assert inline_commands(["no code here"], "x") == []
+
+
+def test_download_section_with_commands_counts_as_install():
+    md = "## Download\n### macOS\n```shell\ncurl -fsSL https://x.sh | sh\n```\n### Windows\n```powershell\nirm https://x.ps1 | iex\n```\n"
+    install, _, source = extract_install_usage(md)
+    assert source == "section" and [b.source for b in install] == ["macOS", "Windows"]
+
+
+def test_building_section_counts_as_install_but_not_build_status():
+    install, _, _ = extract_install_usage("## Building tool\n```sh\ncmake . -B build\n```\n")
+    assert install[0].code == "cmake . -B build"
+    assert extract_install_usage("## Build status\n```sh\ncmake . -B build\n```\n")[2] != "section"
+
+
+def test_optional_sections_are_picked_last():
+    blocks = "".join(f"### Optional extra {i}\n```bash\npip install extra{i}\n```\n" for i in range(5))
+    md = f"## Install\n```bash\ngit clone https://x/y\n```\n{blocks}### Basic\n```bash\npip install y\n```\n"
+    install, _, _ = extract_install_usage(md)
+    codes = [b.code for b in install]
+    assert "pip install y" in codes and "git clone https://x/y" in codes and len(codes) == 5
+    assert codes.index("git clone https://x/y") < codes.index("pip install y")  # README 순서 유지
+
+
+def test_fallback_ignores_lone_git_clone_but_keeps_clone_and_build():
+    assert extract_install_usage("# T\n## Cloning\n```sh\ngit clone --depth=1 https://x/y.git\n```\n")[2] == ""
+    install, _, source = extract_install_usage("# T\n## Source\n```sh\ngit clone https://x/y\nmake install\n```\n")
+    assert source == "fallback" and "make install" in install[0].code
+
+
+def test_docs_heading_note_and_download_words():
+    g = build_guide(repo(), "# UI\n## Documentation\nVisit [the docs](https://ui.example/docs).\n", NOW)
+    assert any("공식 문서 링크로" in n for n in g.notes)
+    g = build_guide(repo(), "# App\n## Installation\nGet the installer from [releases](https://x/releases).\n", NOW)
+    assert any("내려받는 방식" in n for n in g.notes)
+    g = build_guide(repo(), "# App\n## Installation\nSee [docs](https://x).\n", NOW)
+    assert any("링크·설명만" in n for n in g.notes)
