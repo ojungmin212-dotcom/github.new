@@ -1,0 +1,222 @@
+{
+ "labeled_at": "2026-11-07",
+ "labeler": "claude-subagent (README text only, holdout)",
+ "items": [
+  {
+   "repo": "lllyasviel/Fooocus",
+   "sha": "ae05379cc97bc4361ec8b4ec90193dab21be763f",
+   "kind": "commands",
+   "install_commands": [
+    "git clone https://github.com/lllyasviel/Fooocus.git",
+    "conda env create -f environment.yaml",
+    "conda activate fooocus",
+    "pip install -r requirements_versions.txt"
+   ],
+   "notes": "Windows install is a 7z download (listed first); Linux (Anaconda) section gives end-user shell commands, so labeled commands."
+  },
+  {
+   "repo": "upscayl/upscayl",
+   "sha": "a00d55fee90e0f9435d5eaa86e76700df8199af8",
+   "kind": "commands",
+   "install_commands": [
+    "brew install --cask upscayl"
+   ],
+   "notes": "Primarily release/store downloads per OS; the only end-user shell command is the macOS Homebrew cask (npm commands are developer-only)."
+  },
+  {
+   "repo": "obsproject/obs-studio",
+   "sha": "7a25c3fd8b5eb87c2d2e0606cae36e32014bc6fa",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "Only links to the website and the wiki Install-Instructions/build page; no commands or direct download link in the README."
+  },
+  {
+   "repo": "openai/whisper",
+   "sha": "86098128c0b4f24f0e2aa2994de830614b474227",
+   "kind": "commands",
+   "install_commands": [
+    "pip install -U openai-whisper",
+    "pip install git+https://github.com/openai/whisper.git",
+    "sudo apt update && sudo apt install ffmpeg"
+   ],
+   "notes": "ffmpeg prerequisite has per-OS variants; took the first (Ubuntu/Debian)."
+  },
+  {
+   "repo": "fishaudio/fish-speech",
+   "sha": "0f8a12e8a651062fdee9c33a894bdccd3a8513f1",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "Installation is delegated to speech.fish.audio/install; the fenced block is an LLM-agent prompt, not a shell command."
+  },
+  {
+   "repo": "ggml-org/llama.cpp",
+   "sha": "c0ab6e5c0bab3fb21e6cb9d2371f3c41d85ea775",
+   "kind": "commands",
+   "install_commands": [
+    "curl -LsSf https://llama.app/install.sh | sh",
+    "irm https://llama.app/install.ps1 | iex"
+   ],
+   "notes": "Install-script one-liners for Unix and PowerShell; Docker, binaries and source builds are only linked."
+  },
+  {
+   "repo": "nomic-ai/gpt4all",
+   "sha": "b666d16db5aeab8b91aaf7963adcee9c643734d7",
+   "kind": "commands",
+   "install_commands": [
+    "pip install gpt4all"
+   ],
+   "notes": "Desktop app is installed via downloadable installers; only the Python client section has a shell command."
+  },
+  {
+   "repo": "crewAIInc/crewAI",
+   "sha": "73f48320dbe6e2dc7a9bc54fefc6a13637b9485c",
+   "kind": "commands",
+   "install_commands": [
+    "curl -LsSf https://astral.sh/uv/install.sh | sh",
+    "uv tool install crewai"
+   ],
+   "notes": "uv prerequisite has wget/PowerShell alternatives; Claude Code plugin and npx skills commands are agent add-ons, not the install."
+  },
+  {
+   "repo": "microsoft/autogen",
+   "sha": "d07c667a3239ea4ab7af62a53b0f4ff205a1f23d",
+   "kind": "commands",
+   "install_commands": [
+    "pip install -U \"autogen-agentchat\" \"autogen-ext[openai]\"",
+    "pip install -U \"autogenstudio\""
+   ],
+   "notes": "Repository is archived; second command installs the optional AutoGen Studio GUI."
+  },
+  {
+   "repo": "chroma-core/chroma",
+   "sha": "1a3ac2c7c623adbd03ed2508dc27b98cdf26016d",
+   "kind": "commands",
+   "install_commands": [
+    "pip install chromadb"
+   ],
+   "notes": "npm install chromadb appears only inside a shell comment, so it is not listed."
+  },
+  {
+   "repo": "qdrant/qdrant",
+   "sha": "222b2e44ab1c3f17e8246396ead6558e45041df7",
+   "kind": "commands",
+   "install_commands": [
+    "docker run -p 6333:6333 qdrant/qdrant"
+   ],
+   "notes": "Only install path in the README is running the Docker image; full installation guide is linked."
+  },
+  {
+   "repo": "JaidedAI/EasyOCR",
+   "sha": "363afb184047ce452e436f4224f3098422df872e",
+   "kind": "commands",
+   "install_commands": [
+    "pip install easyocr",
+    "pip install git+https://github.com/JaidedAI/EasyOCR.git"
+   ],
+   "notes": "Second command is the development release."
+  },
+  {
+   "repo": "graphdeco-inria/gaussian-splatting",
+   "sha": "54c035f7834b564019656c3e3fcc3646292f727d",
+   "kind": "commands",
+   "install_commands": [
+    "git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive",
+    "conda env create --file environment.yml",
+    "conda activate gaussian_splatting"
+   ],
+   "notes": "SSH clone is shown first; chose the HTTPS clone; viewer build (cmake) and dataset/model downloads excluded."
+  },
+  {
+   "repo": "vitejs/vite",
+   "sha": "a579e352a66fbdce6a51d4e1f67006ccf4f91343",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "No install instructions at all, only 'Read the Docs to Learn More' (vite.dev); borderline docs_link vs none."
+  },
+  {
+   "repo": "fastapi/fastapi",
+   "sha": "1ca09c13584ca45aa0921e5e40b31d49c5e3135a",
+   "kind": "commands",
+   "install_commands": [
+    "uv add \"fastapi[standard]\""
+   ],
+   "notes": "pip alternative is described in prose and linked, not given as a command."
+  },
+  {
+   "repo": "django/django",
+   "sha": "a1f2b45ce5a327f42437bdb620a817839d0bd067",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "Points to docs/intro/install.txt and docs.djangoproject.com for installation."
+  },
+  {
+   "repo": "pandas-dev/pandas",
+   "sha": "831f55cdb3662a396587a0553c94a24bcefc9c6f",
+   "kind": "commands",
+   "install_commands": [
+    "conda install -c conda-forge pandas",
+    "pip install pandas"
+   ],
+   "notes": "Two equivalent package-manager paths (conda listed first, then PyPI)."
+  },
+  {
+   "repo": "microsoft/playwright",
+   "sha": "07c7069cdbb1f5c7331d3f4d2abd864dcfde745a",
+   "kind": "commands",
+   "install_commands": [
+    "npm init playwright@latest",
+    "npm i -D @playwright/test",
+    "npx playwright install"
+   ],
+   "notes": "Several products (Test, CLI, MCP, Library); took Playwright Test's recommended init plus its manual alternative."
+  },
+  {
+   "repo": "BurntSushi/ripgrep",
+   "sha": "91f5d22ef48bde459d90a8c7dbeab416e97d0f2b",
+   "kind": "commands",
+   "install_commands": [
+    "brew install ripgrep",
+    "cargo install ripgrep"
+   ],
+   "notes": "Dozens of per-OS package-manager commands plus prebuilt binaries; took the first (Homebrew) and the cross-platform cargo alternative."
+  },
+  {
+   "repo": "sharkdp/bat",
+   "sha": "c231941daa363e67657216922135e3cc2d5a4f93",
+   "kind": "commands",
+   "install_commands": [
+    "sudo apt install bat",
+    "brew install bat"
+   ],
+   "notes": "Many per-OS options; took the first (apt) plus Homebrew."
+  },
+  {
+   "repo": "cli/cli",
+   "sha": "736c68f674113337685e3eb1f908602a03b8f99b",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "Installation section only links to docs/install_*.md pages and the releases page; gh skill commands install an agent skill, not gh."
+  },
+  {
+   "repo": "bevyengine/bevy",
+   "sha": "526f9e40253348a52a0d0380db98e287e4b5e0b3",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "Setup is delegated to the bevy.org Setup guide; the git checkout/cargo run lines only run an example after cloning."
+  },
+  {
+   "repo": "raysan5/raylib",
+   "sha": "4bfb72d8ff46b74ec8e5c745364406c4f153929f",
+   "kind": "download",
+   "install_commands": [],
+   "notes": "Points first to binary releases on the GitHub Releases page, then to wiki build guides; borderline download vs docs_link."
+  },
+  {
+   "repo": "flutter/flutter",
+   "sha": "208e10f65dedf30d9f69930cfb5f2418391610c4",
+   "kind": "docs_link",
+   "install_commands": [],
+   "notes": "Only an 'Install Flutter' link to docs.flutter.dev/get-started."
+  }
+ ]
+}

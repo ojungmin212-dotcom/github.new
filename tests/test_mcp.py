@@ -167,9 +167,10 @@ def test_claude_desktop_config_paths(monkeypatch, tmp_path):
     monkeypatch.setenv("APPDATA", str(tmp_path))
     assert mcp_server.claude_desktop_config_path() == tmp_path / "Claude" / "claude_desktop_config.json"
     monkeypatch.setattr(mcp_server.sys, "platform", "darwin")
-    assert "Application Support" in str(mcp_server.claude_desktop_config_path())
+    assert "Application Support" in mcp_server.claude_desktop_config_path().parts
     monkeypatch.setattr(mcp_server.sys, "platform", "linux")
-    assert str(mcp_server.claude_desktop_config_path()).endswith(".config/Claude/claude_desktop_config.json")
+    # 경로 구분자(/, \\)와 무관하게 비교 — Windows CI 에서 문자열 비교가 실패했던 문제
+    assert mcp_server.claude_desktop_config_path().parts[-3:] == (".config", "Claude", "claude_desktop_config.json")
 
 
 def test_skill_is_packaged_and_installable(tmp_path):
