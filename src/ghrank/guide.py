@@ -18,6 +18,9 @@ MAX_USAGE_BLOCKS = 3
 MAX_BLOCK_LINES = 12
 STALE_DAYS = 365
 NEW_REPO_DAYS = 90
+# 생성 1년 안에 연 환산 스타 5만 개 이상이면 '급성장' 주의(추천 순이 이런 저장소를 위로 올리므로 함께 경고)
+FAST_GROWTH_DAYS = 365
+FAST_GROWTH_STARS_PER_YEAR = 50_000
 LARGE_REPO_KB = 1024 * 1024  # 1GB (GitHub API size 단위는 KB)
 
 # 목록 항목 안의 코드 펜스는 4칸 이상 들여쓰는 경우가 많아 들여쓰기를 제한하지 않는다
@@ -483,6 +486,10 @@ def repo_caveats(repo: Repo, now: datetime | None = None) -> list[str]:
         age = (now - repo.created_at).days
         if 0 <= age < NEW_REPO_DAYS:
             out.append(f"생성 {age}일 된 저장소 - 사용 이력이 짧아 안정성·스타 수의 신뢰도를 따로 확인하세요")
+        elif age < FAST_GROWTH_DAYS and repo.stars / (age / 365.25) >= FAST_GROWTH_STARS_PER_YEAR:
+            months = max(1, round(age / 30.44))
+            out.append(f"생성 약 {months}개월 만에 스타 {repo.stars:,}개 - 매우 빠른 급성장입니다. 일시적 화제이거나 스타 조작일 수도 "
+                       "있으니 커밋·이슈 활동과 사용 후기를 함께 확인하세요")
     lic = license_caveat(repo.license_spdx)
     if lic:
         out.append(lic)

@@ -7,7 +7,7 @@ import re
 from dataclasses import dataclass, field
 from datetime import UTC, date, datetime, timedelta
 
-from ghrank.categories import Category, has_non_ascii
+from ghrank.categories import Category, has_non_ascii, match_categories
 from ghrank.github import GitHubClient, parse_time
 
 SORT_KEYS = ("stars", "forks", "updated", "score")
@@ -222,6 +222,59 @@ def recommend_score(repo: Repo, now: datetime) -> dict[str, float]:
     }
 
 
+_SEARCH_QUAL = re.compile(r"^(-?)([a-z_]+):(.+)$", re.I)
+
+
+def query_terms(query: str) -> tuple[list[str], list[str]]:
+    """자유 검색어 → (낱말, topic: 값). language:·stars: 같은 다른 한정자와 AND/OR/NOT, 제외(-) 조건은 뺀다."""
+    words: list[str] = []
+    topics: list[str] = []
+    for token in query.split():
+        m = _SEARCH_QUAL.match(token)
+        if m:
+            if not m.group(1) and m.group(2).lower() == "topic":
+                topics.append(m.group(3).strip('"').lower())
+            continue
+        if token.upper() in ("AND", "OR", "NOT") or token.startswith("-"):
+            continue
+        word = token.strip('"').lower()
+        if word:
+            words.append(word)
+    return words, topics
+
+
+@dataclass(frozen=True)
+class SearchFilter:
+    """자유 검색 관련성 판정. basis 는 검색어+이어지는 분야의 키워드·토픽, terms 는 검색어 낱말."""
+
+    basis: Category
+    terms: tuple[str, ...]
+
+    def matches(self, repo: Repo) -> bool:
+        # 검색어 낱말이 2개 이상이고 저장소가 그 낱말을 모두 토픽으로 달았으면 관련(예: 'pdf ocr' → pdf·ocr 토픽).
+        # 낱말 하나만 토픽으로 걸친 경우(토픽 19개 중 text-to-speech 하나)는 이 지름길을 쓰지 않는다.
+        topics = {t.lower() for t in repo.topics}
+        if len(self.terms) >= 2 and all(t in topics for t in self.terms):
+            return True
+        return is_relevant(repo, self.basis)
+
+
+def search_relevance(query: str, categories: list[Category]) -> SearchFilter | None:
+    """자유 검색의 관련성 기준. 검색어 자체 + 검색어와 이어지는 분야(토픽·별칭 일치)의 키워드·토픽을 합친다.
+    예: 'topic:text-to-speech' → 음성 분야와 이어져, 설명에 voice·speech 등이 없고 토픽 수십 개 중
+    하나로만 TTS 를 단 영상 제작 도구는 걸러진다. 낱말이 하나도 없으면(한정자만) None = 거르지 않음."""
+    words, topics = query_terms(query)
+    if not words and not topics:
+        return None
+    terms = set(words) | set(topics)
+    related = [c for c in categories if terms & {t.lower() for t in c.topics}]
+    related += [c for c in match_categories(query, categories) if c not in related]
+    keywords = list(dict.fromkeys([*words, *topics, *(k for c in related for k in c.keywords)]))
+    topic_set = list(dict.fromkeys([*topics, *words, *(t for c in related for t in c.topics)]))
+    basis = Category(key="search", name="검색", topics=tuple(topic_set), keywords=tuple(keywords), aliases=())
+    return SearchFilter(basis=basis, terms=tuple(dict.fromkeys([*words, *topics])))
+
+
 def rank(
     client: GitHubClient,
     query: str,
@@ -230,7 +283,9 @@ def rank(
     title: str,
     category: Category | None = None,
     now: datetime | None = None,
+    relevance: SearchFilter | None = None,
 ) -> Ranking:
+    """relevance 를 주면 그 기준으로 관련성을 거르고(자유 검색), 없으면 category 기준(분야 순위)."""
     if filters.sort not in SORT_KEYS:
         raise ValueError(f"정렬 기준은 {', '.join(SORT_KEYS)} 중 하나여야 합니다")
     now = now or datetime.now(UTC)
@@ -254,7 +309,13 @@ def rank(
             if not filters.include_lists and is_list_repo(repo):
                 result.dropped_lists += 1
                 continue
-            if category is not None and not filters.loose and not is_relevant(repo, category):
+            if filters.loose:
+                relevant = True
+            elif relevance is not None:
+                relevant = relevance.matches(repo)
+            else:
+                relevant = category is None or is_relevant(repo, category)
+            if not relevant:
                 result.dropped_irrelevant += 1
                 continue
             result.repos.append(repo)

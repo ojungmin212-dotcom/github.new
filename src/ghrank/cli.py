@@ -14,7 +14,18 @@ from ghrank import __version__, render
 from ghrank.categories import Category, CategoryError, compact, has_non_ascii, load_categories, match_categories, resolve_category
 from ghrank.github import FileCache, GitHubClient, GitHubError, RateLimitError
 from ghrank.guide import Guide, build_guide
-from ghrank.ranking import SORT_KEYS, Filters, Ranking, Repo, apply_comparison, category_query, free_query, rank
+from ghrank.ranking import (
+    SORT_KEYS,
+    Filters,
+    Ranking,
+    Repo,
+    SearchFilter,
+    apply_comparison,
+    category_query,
+    free_query,
+    rank,
+    search_relevance,
+)
 
 DEFAULT_TOP = 12
 DEFAULT_CACHE_HOURS = 6.0
@@ -175,7 +186,8 @@ def _fetch_guides(client: GitHubClient, repos: list[Repo], report: Report, now: 
         report.guides[repo.full_name] = build_guide(repo, readme, now)
 
 
-Job = tuple[str, str, Category | None]  # (제목, 검색어, 분야)
+Job = tuple[str, str, Category | None, SearchFilter | None]  # (제목, 검색어, 분야, 자유 검색 관련성 기준)
+LOOSE_HINT = "검색어와 관련이 약한 저장소(토픽만 걸친 범용 저장소) {n}개를 뺐습니다. 모두 보려면 --loose 를 붙이세요."
 
 
 def _run_rankings(
@@ -183,10 +195,12 @@ def _run_rankings(
 ) -> Report:
     report = Report()
     filters = _filters(args)
-    for title, query, cat in jobs:
+    for title, query, cat, relevance in jobs:
         log(f"[조회] {title}")
         try:
-            result = rank(client, query, args.top, filters, title=title, category=cat, now=now)
+            result = rank(client, query, args.top, filters, title=title, category=cat, now=now, relevance=relevance)
+            if relevance is not None and result.dropped_irrelevant:
+                result.notes.append(LOOSE_HINT.format(n=result.dropped_irrelevant))
             report.rankings.append(result)
             if args.guide:
                 _fetch_guides(client, result.repos, report, now, log)
@@ -205,7 +219,7 @@ def cmd_top(
     chosen = [resolve_category(c, categories) for c in args.categories] if args.categories else list(categories)
     unique = list(dict.fromkeys(chosen))
     filters = _filters(args)
-    jobs = [(f"{c.name} {_sort_label(args.sort)}", category_query(c, filters, now.date()), c) for c in unique]
+    jobs: list[Job] = [(f"{c.name} {_sort_label(args.sort)}", category_query(c, filters, now.date()), c, None) for c in unique]
     return _run_rankings(client, jobs, args, now, log)
 
 
@@ -220,13 +234,14 @@ def cmd_find(
     if matched and (exact or has_non_ascii(query)):
         names = ", ".join(f"{c.name}({c.key})" for c in matched)
         notes.append(f"'{query}' 을(를) 분야 [{names}] 로 해석했습니다. 검색어 그대로 찾으려면 --raw 를 붙이세요.")
-        jobs: list[Job] = [(f"{c.name} {_sort_label(args.sort)}", category_query(c, filters, now.date()), c) for c in matched]
+        jobs: list[Job] = [(f"{c.name} {_sort_label(args.sort)}", category_query(c, filters, now.date()), c, None) for c in matched]
     else:
         if has_non_ascii(query):
             notes.append("GitHub 저장소 설명은 대부분 영어라 한글 검색은 결과가 적을 수 있습니다 - 영어 키워드를 권장합니다.")
         if matched:
             notes.append("분야 순위로 보려면: " + " | ".join(f"ghrank top {c.key}" for c in matched))
-        jobs = [(f"'{query}' 검색 결과 {_sort_label(args.sort)}", free_query(query, filters, now.date()), None)]
+        jobs = [(f"'{query}' 검색 결과 {_sort_label(args.sort)}", free_query(query, filters, now.date()), None,
+                 search_relevance(query, categories))]
     report = _run_rankings(client, jobs, args, now, log)
     report.notes = notes + report.notes
     return report

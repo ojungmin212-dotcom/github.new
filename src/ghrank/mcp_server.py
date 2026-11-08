@@ -92,13 +92,14 @@ def build_server(client: GitHubClient, categories: list[Category], log: Callable
 
     @server.tool(
         description=("검색어로 저장소 찾기(이름·설명·토픽, 스타 순). 한글이면 분야로 해석하므로, 구체적 주제는 영어 검색어와 "
-                     "raw=true 를 쓴다. GitHub 검색 문법(language:rust 등)도 된다."),
+                     "raw=true 를 쓴다. GitHub 검색 문법(language:rust, topic:tts 등)도 된다. 토픽만 걸친 범용 저장소는 "
+                     "관련성 필터로 빠지며, loose=true 면 모두 보여 준다."),
         annotations=read_only,
     )
     def find_repos(query: str, n: int = 12, raw: bool = False, sort: str = "stars", language: str | None = None,
-                   active_days: int | None = None, min_stars: int | None = None) -> dict[str, Any]:
+                   active_days: int | None = None, min_stars: int | None = None, loose: bool = False) -> dict[str, Any]:
         return call(lambda: app.search(_params(mode="find", q=query, n=n, raw=raw, sort=sort, lang=language,
-                                               active_days=active_days, min_stars=min_stars)))
+                                               active_days=active_days, min_stars=min_stars, loose=loose)))
 
     @server.tool(
         description=("저장소 하나의 설치·사용 명령(README 에서 규칙으로 추출, 출처 절 포함)과 주의점. "

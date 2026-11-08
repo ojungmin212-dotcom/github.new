@@ -175,6 +175,8 @@ class App:
             raise BadRequest("조회 방식이 올바르지 않습니다")
         report.notes = [n.replace("--raw 를 붙이세요", "'검색어 그대로' 를 켜세요") for n in report.notes]
         for ranking in report.rankings:
+            ranking.notes = [n.replace("--loose 를 붙이세요", "조건의 '관련성 필터 끄기'를 켜세요") for n in ranking.notes]
+        for ranking in report.rankings:
             for repo in ranking.repos:
                 self._remember(repo)
         return report, now
