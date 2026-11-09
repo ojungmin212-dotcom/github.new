@@ -47,4 +47,6 @@ jobs:
           git add reports
           if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
           git commit -m "chore(report): 주간 보고서 $(date -u +%Y-%m-%d)"
+          # 실행 중에 main 이 바뀌었어도(코드 반영 등) 보고서 커밋이 거부되지 않게 최신으로 맞춘 뒤 올린다
+          git pull --rebase origin main
           git push
